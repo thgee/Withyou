@@ -1,6 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [message, setMessage] = useState([]);
+  const [name, setName] = useState("");
+  const [job, setJob] = useState("");
+
   const handleSubmit = async () => {
     const { Configuration, OpenAIApi } = require("openai");
 
@@ -31,7 +36,7 @@ function App() {
         {
           role: `user`,
           content: `
-          안녕하세요 면접관님, 저는 지원자 이태혁 입니다. 제가 지원한 직무는 프론트엔드 개발자 입니다.`,
+          안녕하세요 면접관님, 저는 지원자 ${name} 입니다. 제가 지원한 직무는 ${job} 입니다.`,
         },
         {
           role: `assistant`,
@@ -43,12 +48,27 @@ function App() {
       ],
     });
 
-    console.log(completion.data);
+    setMessage(completion.data.choices[0].message.content);
   };
 
-  handleSubmit();
-
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="이름"
+      />
+      <input
+        type="text"
+        value={job}
+        onChange={(e) => setJob(e.target.value)}
+        placeholder="지원 직무"
+      />
+      <button onClick={handleSubmit}> 전송 </button>
+      <pre>{message}</pre>
+    </div>
+  );
 }
 
 export default App;
