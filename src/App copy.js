@@ -3,10 +3,10 @@ import "./App.css";
 
 function App() {
   const [chatMsgs, setChatMsgs] = useState([]);
-  const [fixedMsgs, setFixedMsgs] = useState([]);
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
   const [ans, setAns] = useState("");
+  const [fixedMsgs, setFixedMsgs] = useState([]);
 
   const handleSubmit = async () => {
     if (name.length <= 0 || job.length <= 0) return;
