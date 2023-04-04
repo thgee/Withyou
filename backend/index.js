@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.get("/interview", async function (req, res) {
+app.post("/interview", async function (req, res) {
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     temperature: 0.5,
@@ -57,7 +57,7 @@ app.get("/interview", async function (req, res) {
   let question = completion.data.choices[0].message[`content`];
   console.log(question);
 
-  res.send(question);
+  res.json({ assistant: question });
 });
 
 app.listen(3000);
