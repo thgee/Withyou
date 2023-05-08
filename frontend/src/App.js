@@ -12,7 +12,7 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: "Jone" }),
+      body: JSON.stringify({ name: name, job: job }),
     });
 
     const data = await response.json();
