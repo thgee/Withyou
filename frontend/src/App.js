@@ -6,6 +6,8 @@ function App() {
   const [job, setJob] = useState("");
   const [ans, setAns] = useState("");
 
+  const [res, setRes] = useState("");
+
   const handleSubmit = async () => {
     const response = await fetch(`http://localhost:3000/interview`, {
       method: `POST`,
@@ -17,7 +19,7 @@ function App() {
 
     const data = await response.json();
     console.log(data);
-    return data;
+    await setRes(data);
   };
 
   return (
@@ -50,7 +52,7 @@ function App() {
         placeholder="답변"
       />
       <button onClick={handleSubmit}> 전송 </button>
-      <pre></pre>
+      <pre>{res.assistant}</pre>
     </div>
   );
 }
