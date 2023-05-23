@@ -22,6 +22,7 @@ app.post("/interview", async function (req, res) {
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     temperature: 0.5,
+    max_tokens: 10,
     messages: [
       {
         role: `system`,
