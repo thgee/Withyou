@@ -15,11 +15,8 @@ router.use(express.json()); // for parsing application/json
 router.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 router.post("/", async function (req, res) {
-  let { userMsgs, assistantMsgs } = req.body;
-  console.log(assistantMsgs);
-  console.log(userMsgs);
-
-  let messages = [
+  let { messages } = req.body;
+  let prompt = [
     {
       role: `system`,
       content: `
@@ -32,30 +29,19 @@ router.post("/", async function (req, res) {
     {
       role: `user`,
       content: `
-    안녕하세요 면접관님, 저는 지원자 ${req.body.name} 입니다. 제가 지원한 직무는 ${req.body.job} 입니다.`,
+      안녕하세요 면접관님, 저는 지원자 ${req.body.name} 입니다. 제가 지원한 직무는 ${req.body.job} 입니다.`,
     },
+    ...messages,
   ];
-
-  while (userMsgs.length != 0 && assistantMsgs.length != 0) {
-    messages.push({
-      role: `assistant`,
-      content: `${String(assistantMsgs.shift()).replace(/\n|\r|\s*/g, "")}`,
-    });
-    messages.push({
-      role: `user`,
-      content: `${String(userMsgs.shift()).replace(/\n|\r|\s*/g, "")}`,
-    });
-  }
 
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     temperature: 0.5,
     max_tokens: 200,
-    messages: messages,
+    messages: prompt,
   });
-
-  let question = completion.data.choices[0].message[`content`];
-  res.json({ assistant: question });
+  messages.push(completion.data.choices[0].message);
+  res.json(messages);
 });
 
 module.exports = router;
