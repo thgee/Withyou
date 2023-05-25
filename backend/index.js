@@ -40,9 +40,15 @@ app.post("/interview", async function (req, res) {
     },
   ];
 
-  while (userMsgs?.length != 0 && assistantMsgs?.length != 0) {
-    messages.push(assistantMsgs?.pop());
-    messages.push(userMsgs?.pop());
+  while (userMsgs.length != 0 && assistantMsgs.length != 0) {
+    messages.push({
+      role: `assistant`,
+      content: `${String(assistantMsgs.shift()).replace(/\n|\r|\s*/g, "")}`,
+    });
+    messages.push({
+      role: `user`,
+      content: `${String(userMsgs.shift()).replace(/\n|\r|\s*/g, "")}`,
+    });
   }
 
   const completion = await openai.createChatCompletion({
