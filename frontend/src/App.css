@@ -28,8 +28,9 @@ body {
 
 .chatList {
   overflow-y: auto;
-  height: 93vh;
-  padding: 30px;
+  height: 92vh;
+  padding: 0 30px;
+  padding-bottom: 45px;
 }
 
 .chatList::-webkit-scrollbar {
@@ -99,7 +100,7 @@ body {
   right: 0;
   left: 0;
 
-  width: 55%;
+  width: 55.5%;
   height: auto;
   padding: 10px;
   margin: 20px auto;
