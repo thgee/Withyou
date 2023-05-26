@@ -50,6 +50,7 @@ body {
 .chatList .ChatBox {
   border: 1px solid #afb2e3;
   border-radius: 10px;
+  min-height: 40px;
 
   padding: 10px;
   margin: 20px 0;
@@ -77,6 +78,22 @@ body {
   color: #fff;
 
   margin-left: 20%;
+}
+
+.chatList .loading {
+  display: flex;
+  align-items: center;
+  border: 1px solid #afb2e3;
+  background-color: #ebf1ff;
+  border-radius: 10px;
+  min-height: 40px;
+
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.chatList .loading .loading-text {
+  margin-right: 10px;
 }
 
 /* InputAns */

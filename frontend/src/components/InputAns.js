@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import Spinner1 from "../assets/Spinner1.gif";
 import { useState, useEffect, useRef } from "react";
 
-const InputAns = ({ ans, setAns, onClick }) => {
+const InputAns = ({ ans, setAns, onClick, isLoading }) => {
   const textareaRef = useRef(null);
   const [textareaHeight, setTextareaHeight] = useState("auto");
   const [rows, setRows] = useState("1");
@@ -40,11 +41,15 @@ const InputAns = ({ ans, setAns, onClick }) => {
         onKeyPress={handleEnter}
         placeholder="Type your answer"
       />
-      <FontAwesomeIcon
-        className="submitIcon"
-        icon={faPaperPlane}
-        onClick={onClick}
-      />
+      {isLoading ? (
+        <img width="34px" src={Spinner1} />
+      ) : (
+        <FontAwesomeIcon
+          className="submitIcon"
+          icon={faPaperPlane}
+          onClick={onClick}
+        />
+      )}
     </div>
   );
 };

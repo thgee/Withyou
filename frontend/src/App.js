@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import ChatBox from "./components/ChatBox";
 import InputAns from "./components/InputAns";
+import Spinner2 from "./assets/Spinner2.gif";
 import "./App.css";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   // const [job, setJob] = useState("");
   const [messages, setMessages] = useState([]);
   const [ans, setAns] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const chatListRef = useRef(null);
 
   useEffect(() => {
@@ -16,6 +18,9 @@ function App() {
   }, [messages]);
 
   const handleSubmit = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+
     setAns("");
     const updatedMessages = [...messages, { role: "user", content: `${ans}` }];
     setMessages(updatedMessages);
@@ -34,6 +39,8 @@ function App() {
 
     const data = await response.json();
     await setMessages(data);
+
+    setIsLoading(false);
   };
 
   return (
@@ -52,14 +59,25 @@ function App() {
         onKeyPress={handleEnter}
         placeholder="지원 직무를 입력해주세요"
       /> */}
-
       <div className="chatList" ref={chatListRef}>
         {messages.map((it, idx) => (
           <ChatBox key={idx} text={it.content} role={it.role} />
         ))}
+        {isLoading ? (
+          <div className="loading">
+            <div className="loading-text">
+              면접관이 질문을 준비하고 있습니다
+            </div>
+            <img width="30px" src={Spinner2} />
+          </div>
+        ) : null}
       </div>
-
-      <InputAns ans={ans} onClick={handleSubmit} setAns={setAns} />
+      <InputAns
+        ans={ans}
+        onClick={handleSubmit}
+        setAns={setAns}
+        isLoading={isLoading}
+      />
     </div>
   );
 }
