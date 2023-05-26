@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Chatbox from "./components/Chatbox";
 import "./App.css";
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     ];
     setMessages(updatedMessages);
 
-    const response = await fetch(`http://localhost:3000/interview`, {
+    const response = await fetch(`http://localhost:8080/interview`, {
       method: `POST`,
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +62,7 @@ function App() {
       <button onClick={handleSubmit}> 전송 </button>
 
       {messages.map((it, idx) => (
-        <div key={idx}>{it.content}</div>
+        <Chatbox key={idx} text={it.content} />
       ))}
     </div>
   );
