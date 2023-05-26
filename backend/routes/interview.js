@@ -29,7 +29,7 @@ router.post("/", async function (req, res) {
     {
       role: `user`,
       content: `
-      안녕하세요 면접관님, 저는 지원자 ${req.body.name} 입니다. 제가 지원한 직무는 ${req.body.job} 입니다.`,
+      안녕하세요 면접관님, 저는 지원자 [이름] 입니다. 제가 지원한 직무는 [직업] 입니다.`,
     },
     ...messages,
   ];
