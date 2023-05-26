@@ -11,9 +11,13 @@
 }
 
 body {
+  margin: 0;
+}
+
+.App {
   width: 60%;
   min-height: 100vh;
-  border: 1px solid #d1d1d1;
+  border: 1px solid #afb2e3;
 
   box-sizing: border-box;
   margin: 0 auto;
@@ -28,8 +32,22 @@ body {
   padding: 30px;
 }
 
+.chatList::-webkit-scrollbar {
+  width: 12px; /*스크롤바의 너비*/
+}
+
+.chatList::-webkit-scrollbar-thumb {
+  background-color: #40537a; /*스크롤바의 색상*/
+  background-clip: padding-box;
+  border-radius: 10px;
+}
+
+.chatList::-webkit-scrollbar-track {
+  background-color: #cddcfa; /*스크롤바 트랙 색상*/
+}
+
 .chatList .ChatBox {
-  border: 1px solid #d1d1d1;
+  border: 1px solid #afb2e3;
   border-radius: 10px;
 
   padding: 10px;
@@ -49,8 +67,12 @@ body {
   padding: 0;
 }
 
+.chatList .ChatBox.assistant {
+  background-color: #ebf1ff;
+}
+
 .chatList .ChatBox.user {
-  background-color: #ededed;
+  background-color: #82abfb;
 
   margin-left: 20%;
 }
@@ -58,7 +80,7 @@ body {
 /* InputAns */
 
 .InputAns {
-  border: 1px solid #d1d1d1;
+  border: 1px solid #9dc8c8;
   border-radius: 10px;
 
   background-color: white;
