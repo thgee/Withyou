@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ChatBox from "./components/ChatBox";
 import InputAns from "./components/InputAns";
 import "./App.css";
@@ -8,12 +8,16 @@ function App() {
   // const [job, setJob] = useState("");
   const [messages, setMessages] = useState([]);
   const [ans, setAns] = useState("");
+  const chatListRef = useRef(null);
+
+  useEffect(() => {
+    // 스크롤을 항상 가장 아래로 이동
+    chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+  }, [messages]);
 
   const handleSubmit = async () => {
-    const updatedMessages = [
-      ...messages,
-      { role: "user", content: `${String(ans)}` },
-    ];
+    setAns("");
+    const updatedMessages = [...messages, { role: "user", content: `${ans}` }];
     setMessages(updatedMessages);
 
     const response = await fetch(`http://localhost:8080/interview`, {
@@ -49,11 +53,13 @@ function App() {
         placeholder="지원 직무를 입력해주세요"
       /> */}
 
-      {messages.map((it, idx) => (
-        <ChatBox key={idx} text={it.content} role={it.role} />
-      ))}
+      <div className="chatList" ref={chatListRef}>
+        {messages.map((it, idx) => (
+          <ChatBox key={idx} text={it.content} role={it.role} />
+        ))}
+      </div>
 
-      <InputAns ans={ans} onclick={handleSubmit} setAns={setAns} />
+      <InputAns ans={ans} onClick={handleSubmit} setAns={setAns} />
     </div>
   );
 }
