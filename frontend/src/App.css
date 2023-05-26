@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  width: 60%;
+  min-height: 100vh;
+  border: 1px solid #d1d1d1;
+
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 3%;
+}
+
+/* ChatBox */
+
+.ChatBox {
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-family: "Pretendard-Regular";
+
+  line-height: 140%;
+
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.ChatBox.assistant {
+}
+
+.ChatBox.user {
+  background-color: #ededed;
+
+  margin-left: 40%;
+}

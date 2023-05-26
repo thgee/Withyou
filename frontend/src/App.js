@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Chatbox from "./components/Chatbox";
+import ChatBox from "./components/ChatBox";
 import "./App.css";
 
 function App() {
@@ -62,7 +62,7 @@ function App() {
       <button onClick={handleSubmit}> 전송 </button>
 
       {messages.map((it, idx) => (
-        <Chatbox key={idx} text={it.content} />
+        <ChatBox key={idx} text={it.content} role={it.role} />
       ))}
     </div>
   );

@@ -1,10 +1,9 @@
-const Chatbox = ({ text }) => {
+const ChatBox = ({ text, role }) => {
   return (
-    <div className="Chatbox">
-      <div>textbox</div>
-      <div>{text}</div>
+    <div className={`ChatBox ${role}`}>
+      <div className="text">{text}</div>
     </div>
   );
 };
 
-export default Chatbox;
+export default ChatBox;

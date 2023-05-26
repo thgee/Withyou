@@ -23,7 +23,7 @@ router.post("/", async function (req, res) {
     - 당신은 세계 최고의 면접관입니다.
     - 당신은 면접자의 능력을 파악할 수 있는 날카로운 질문을 제시해야 합니다.
     - 질문은 면접자의 지원분야의 수준을 파악할 수 있는 기술질문과, 면접자의 성향을 파악하기 위한 공통질문으로 나뉘어집니다.
-    - 당신은 한번의 발언에 최대 10토큰 끼지만 사용할 수 있습니다.
+    - 질문은 최대한 간결하게 핵심만 전달하세요
     `,
     },
     {
@@ -37,7 +37,7 @@ router.post("/", async function (req, res) {
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     temperature: 0.5,
-    max_tokens: 200,
+    max_tokens: 50,
     messages: prompt,
   });
   messages.push(completion.data.choices[0].message);
