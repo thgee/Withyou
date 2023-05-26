@@ -28,12 +28,12 @@ body {
 
 .chatList {
   overflow-y: auto;
-  max-height: 80vh;
+  height: 93vh;
   padding: 30px;
 }
 
 .chatList::-webkit-scrollbar {
-  width: 12px; /*스크롤바의 너비*/
+  width: 3px; /*스크롤바의 너비*/
 }
 
 .chatList::-webkit-scrollbar-thumb {
@@ -43,7 +43,7 @@ body {
 }
 
 .chatList::-webkit-scrollbar-track {
-  background-color: #cddcfa; /*스크롤바 트랙 색상*/
+  background-color: #fff; /*스크롤바 트랙 색상*/
 }
 
 .chatList .ChatBox {
@@ -73,6 +73,7 @@ body {
 
 .chatList .ChatBox.user {
   background-color: #82abfb;
+  color: #fff;
 
   margin-left: 20%;
 }
