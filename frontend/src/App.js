@@ -17,6 +17,10 @@ function App() {
     chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
   }, [messages]);
 
+  useEffect(() => {
+    handleSubmit();
+  }, []);
+
   const handleSubmit = async () => {
     if (isLoading) return;
     setIsLoading(true);
@@ -36,7 +40,13 @@ function App() {
     });
 
     const data = await response.json();
-    await setMessages(data);
+
+    if (response.status === 400) {
+      console.log(data.message); // gpt api 에러 발생 시
+    }
+    if (response.status === 200) {
+      setMessages(data);
+    }
 
     setIsLoading(false);
   };
@@ -50,7 +60,7 @@ function App() {
         {isLoading ? (
           <div className="loading">
             <div className="loading-text">
-              면접관이 질문을 준비하고 있습니다
+              면접관이 답변을 준비하고 있습니다
             </div>
             <img width="30px" src={Spinner2} />
           </div>

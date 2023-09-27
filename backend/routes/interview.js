@@ -18,16 +18,21 @@ router.post("/", async function (req, res) {
   let { messages } = req.body;
   let prompt = [...initPrompt, ...messages]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
 
-  const completion = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    temperature: 0.5,
-    max_tokens: 200, // max token : 4097
-    messages: prompt,
-  });
+  try {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      temperature: 0.7,
+      max_tokens: 500, // max token : 4097
+      messages: prompt,
+    });
 
-  messages.push(completion.data.choices[0].message);
-  console.log(messages);
-  res.status(200).json(messages);
+    messages.push(completion.data.choices[0].message);
+    res.status(200).json(messages);
+  } catch (err) {
+    console.log(messages);
+    console.log(err.message);
+    res.status(400).json(err);
+  }
 });
 
 module.exports = router;
