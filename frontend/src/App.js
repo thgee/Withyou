@@ -31,8 +31,6 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // name: name,
-        // job: job,
         messages: updatedMessages,
       }),
     });
@@ -45,20 +43,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        onKeyPress={handleEnter}
-        placeholder="이름을 입력해주세요"
-      />
-      <input
-        type="text"
-        value={job}
-        onChange={(e) => setJob(e.target.value)}
-        onKeyPress={handleEnter}
-        placeholder="지원 직무를 입력해주세요"
-      /> */}
       <div className="chatList" ref={chatListRef}>
         {messages.map((it, idx) => (
           <ChatBox key={idx} text={it.content} role={it.role} />

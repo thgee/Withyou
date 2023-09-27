@@ -10,7 +10,6 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-// POST 요청 받을 수 있도록 만듬
 router.use(express.json()); // for parsing application/json
 router.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -40,8 +39,9 @@ router.post("/", async function (req, res) {
     max_tokens: 10,
     messages: prompt,
   });
+
   messages.push(completion.data.choices[0].message);
-  res.json(messages);
+  res.status(200).json(messages);
 });
 
 module.exports = router;
