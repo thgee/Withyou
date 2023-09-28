@@ -17,12 +17,14 @@ router.use(express.urlencoded({ extended: true })); // for parsing application/x
 router.post("/", async function (req, res) {
   let { messages } = req.body;
   let prompt = [...initPrompt, ...messages]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
+  console.log(`==========================================`);
+  console.log(prompt);
 
   try {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       temperature: 0.7,
-      max_tokens: 500, // max token : 4097
+      max_tokens: 200, // max token : 4097
       messages: prompt,
     });
 

@@ -17,6 +17,7 @@ function App() {
     chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
   }, [messages]);
 
+  // 페이지 로드 시 gpt부터 말하도록 설정
   useEffect(() => {
     handleSubmit();
   }, []);
@@ -26,7 +27,10 @@ function App() {
     setIsLoading(true);
 
     setAns("");
-    const updatedMessages = [...messages, { role: "user", content: `${ans}` }];
+    const updatedMessages = [
+      ...messages,
+      ...(ans ? [{ role: "user", content: `${ans}` }] : []),
+    ];
     setMessages(updatedMessages);
 
     const response = await fetch(`http://localhost:8080/interview`, {
