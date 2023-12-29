@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const initPrompt = require("../utils/initPrompt");
 
-router.post("/", async function (req, res) {
+router.post("/", async function (req: any, res: any) {
   const openai = req.openai;
   let { messages } = req.body;
 
@@ -16,7 +16,7 @@ router.post("/", async function (req, res) {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       temperature: 0.7,
-      max_tokens: 20, // max token : 4097
+      max_tokens: 500, // max token : 4097
       messages: prompt,
     });
 

@@ -1,5 +1,9 @@
+import { Request, Response, NextFunction } from "express";
+import { CustomRequest } from "./types";
+
 const express = require("express");
 const app = express();
+
 require("dotenv").config(); // 환경변수 설정
 
 app.use(express.json()); // for parsing application/json
@@ -16,8 +20,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// OpenAI를 미들웨어로 전달
-app.use((req, res, next) => {
+app.use((req: CustomRequest, res: Response, next: NextFunction) => {
   req.openai = openai;
   next();
 });

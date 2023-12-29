@@ -1,4 +1,4 @@
-let job = "관광통역사";
+let job = "프론트엔드";
 
 const initPrompt = [
   {

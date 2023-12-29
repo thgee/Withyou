@@ -1,20 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import ChatBox from "./components/ChatBox";
 import InputAns from "./components/InputAns";
-import Spinner2 from "./assets/Spinner2.gif";
 import "./App.css";
 
 function App() {
-  // const [name, setName] = useState("");
-  // const [job, setJob] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<{ content: String; role: String }[]>(
+    []
+  );
   const [ans, setAns] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const chatListRef = useRef(null);
+  const chatListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // 스크롤을 항상 가장 아래로 이동
-    chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+    if (chatListRef.current !== null)
+      chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
   }, [messages]);
 
   // 페이지 로드 시 gpt부터 말하도록 설정
@@ -66,7 +66,10 @@ function App() {
             <div className="loading-text">
               면접관이 답변을 준비하고 있습니다
             </div>
-            <img width="30px" src={Spinner2} />
+            <img
+              width="30px"
+              src={`${process.env.PUBLIC_URL}/assets/Spinner2.gif`}
+            />
           </div>
         ) : null}
       </div>

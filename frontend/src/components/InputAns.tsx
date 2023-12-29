@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
-import Spinner1 from "../assets/Spinner1.gif";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, FC } from "react";
+import { InputAnsProps } from "../types";
 
-const InputAns = ({ ans, setAns, onClick, isLoading }) => {
-  const textareaRef = useRef(null);
+const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textareaHeight, setTextareaHeight] = useState("auto");
-  const [rows, setRows] = useState("1");
+  const [rows, setRows] = useState(1);
 
   useEffect(() => {
     adjustTextareaHeight();
@@ -15,12 +15,13 @@ const InputAns = ({ ans, setAns, onClick, isLoading }) => {
   // textarea 높이 자동조절
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
+    if (textarea == null) return;
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`;
     setTextareaHeight(`${textarea.scrollHeight}px`);
   };
 
-  const handleEnter = (e) => {
+  const handleEnter = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       onClick();
@@ -42,7 +43,10 @@ const InputAns = ({ ans, setAns, onClick, isLoading }) => {
         placeholder="Type your answer"
       />
       {isLoading ? (
-        <img width="34px" src={Spinner1} />
+        <img
+          width="34px"
+          src={`${process.env.PUBLIC_URL}/assets/Spinner1.gif`}
+        />
       ) : (
         <FontAwesomeIcon
           className="submitIcon"
