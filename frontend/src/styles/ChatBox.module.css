@@ -1,0 +1,31 @@
+.ChatBox {
+  border: 1px solid #afb2e3;
+  border-radius: 10px;
+  min-height: 40px;
+
+  padding: 10px;
+  margin: 20px 0;
+}
+
+pre {
+  font-size: 17px;
+  font-family: "Pretendard-Regular";
+
+  line-height: 120%;
+
+  word-wrap: break-word;
+  white-space: pre-wrap;
+
+  margin: 0;
+  padding: 0;
+}
+
+.assistant {
+  background-color: #ebf1ff;
+}
+
+.user {
+  background-color: #82abfb;
+  color: #fff;
+  margin-left: 20%;
+}

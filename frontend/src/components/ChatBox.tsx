@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { ChatBoxProps } from "../types";
+import { ChatBoxProps } from "../types/types";
+import styles from "../styles/ChatBox.module.css";
 
 const ChatBox: FC<ChatBoxProps> = ({ text, role }) => {
   return (
-    <div className={`ChatBox ${role}`}>
-      <pre className="text">{text}</pre>
+    <div className={`${styles.ChatBox} ${styles[`${role}`]}`}>
+      <pre>{text}</pre>
     </div>
   );
 };

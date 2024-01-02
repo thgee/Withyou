@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { useState, useEffect, useRef, FC } from "react";
-import { InputAnsProps } from "../types";
+import { InputAnsProps } from "../types/types";
+import styles from "../styles/InputAns.module.css";
 
 const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -29,7 +30,7 @@ const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
   };
 
   return (
-    <div className="InputAns">
+    <div className={styles.InputAns}>
       <textarea
         ref={textareaRef}
         style={{ height: textareaHeight }}
@@ -49,7 +50,7 @@ const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
         />
       ) : (
         <FontAwesomeIcon
-          className="submitIcon"
+          className={styles.submitIcon}
           icon={faPaperPlane}
           onClick={onClick}
         />
