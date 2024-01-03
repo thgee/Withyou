@@ -80,6 +80,9 @@ const Interview: FC = () => {
         setAns={setAns}
         isLoading={isLoading}
       />
+      <button className={styles.continue_btn} onClick={handleSubmit}>
+        계속 진행
+      </button>
     </div>
   );
 };

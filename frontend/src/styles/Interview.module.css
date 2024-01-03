@@ -44,3 +44,9 @@
 .chatList .loading .loading-text {
   margin-right: 10px;
 }
+
+.continue_btn {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+}

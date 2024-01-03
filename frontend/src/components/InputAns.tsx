@@ -23,8 +23,9 @@ const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
   };
 
   const handleEnter = (e: React.KeyboardEvent) => {
+    e.preventDefault();
+    if (ans.length === 0) return; // 면접자가 아무 내용도 입력하지 않았을 경우 전송 불가
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
       onClick();
     }
   };
@@ -52,7 +53,10 @@ const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
         <FontAwesomeIcon
           className={styles.submitIcon}
           icon={faPaperPlane}
-          onClick={onClick}
+          onClick={() => {
+            if (ans.length === 0) return; // 면접자가 아무 내용도 입력하지 않았을 경우 전송 불가
+            onClick();
+          }}
         />
       )}
     </div>
