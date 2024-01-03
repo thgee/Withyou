@@ -15,7 +15,7 @@ router.post("/", async function (req: any, res: any) {
     // GPT 호출
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      temperature: 0.7,
+      temperature: 0.5,
       max_tokens: 500, // max token : 4097
       messages: prompt,
     });
