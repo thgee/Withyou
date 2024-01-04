@@ -10,3 +10,8 @@ export interface ChatBoxProps {
   text: String;
   role: String;
 }
+
+export interface ModeBoxProps {
+  title: String;
+  description: String;
+}
