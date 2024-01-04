@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ChatBoxProps } from "../types/types";
-import styles from "../styles/ChatBox.module.css";
+import styles from "../styles/ChatBox.module.scss";
 
 const ChatBox: FC<ChatBoxProps> = ({ text, role }) => {
   return (

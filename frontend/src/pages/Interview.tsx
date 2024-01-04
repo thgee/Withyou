@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import ChatBox from "../components/ChatBox";
 import InputAns from "../components/InputAns";
-import styles from "../styles/Interview.module.css";
+import styles from "../styles/Interview.module.scss";
 import { FC } from "react";
 
 const Interview: FC = () => {
