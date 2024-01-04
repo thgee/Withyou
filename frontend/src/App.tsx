@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
-import Interview from "./pages/Interview";
+import Actual from "./pages/Actual";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Interview />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/actual" element={<Actual />} />
       </Routes>
     </BrowserRouter>
   );

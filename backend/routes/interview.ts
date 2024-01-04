@@ -6,10 +6,6 @@ router.post("/", async function (req: any, res: any) {
   let { messages } = req.body;
 
   let prompt = [...initPrompt, ...messages]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
-  console.log(
-    `=====================방금 들어간 프롬프트 내용====================`
-  );
-  console.log(prompt);
 
   try {
     // GPT 호출
@@ -24,7 +20,7 @@ router.post("/", async function (req: any, res: any) {
     messages.push(completion.data.choices[0].message);
     res.status(200).json(messages);
   } catch (err) {
-    console.log(err);
+    if (err instanceof Error) console.log(err.message);
     res.status(400).json(err);
   }
 });

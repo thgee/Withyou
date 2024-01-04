@@ -4,7 +4,13 @@ import { useState, useEffect, useRef, FC } from "react";
 import { InputAnsProps } from "../types/types";
 import styles from "../styles/componentStyles/InputAns.module.scss";
 
-const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
+const InputAns: FC<InputAnsProps> = ({
+  ans,
+  setAns,
+  onClick,
+  isLoading,
+  isError,
+}) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textareaHeight, setTextareaHeight] = useState("auto");
   const [rows, setRows] = useState(1);
@@ -34,7 +40,7 @@ const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
         ref={textareaRef}
         style={{ height: textareaHeight }}
         rows={rows}
-        value={ans}
+        value={isError ? "면접을 다시 시작해 주세요." : (ans as string)}
         onChange={(e) => {
           setAns(e.target.value);
           adjustTextareaHeight();

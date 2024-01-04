@@ -1,8 +1,9 @@
 export interface InputAnsProps {
-  ans: string;
-  setAns: React.Dispatch<React.SetStateAction<string>>;
+  ans: String;
+  setAns: React.Dispatch<React.SetStateAction<String>>;
   onClick: () => void;
   isLoading: boolean;
+  isError: boolean;
 }
 
 export interface ChatBoxProps {
