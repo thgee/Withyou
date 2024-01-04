@@ -23,11 +23,9 @@ const InputAns: FC<InputAnsProps> = ({ ans, setAns, onClick, isLoading }) => {
   };
 
   const handleEnter = (e: React.KeyboardEvent) => {
-    e.preventDefault();
+    if (!e.shiftKey) e.preventDefault(); // 쉬프트와 엔터를 같이 누르면 줄바꿈 가능하도록 함
     if (ans.length === 0) return; // 면접자가 아무 내용도 입력하지 않았을 경우 전송 불가
-    if (e.key === "Enter" && !e.shiftKey) {
-      onClick();
-    }
+    if (!e.shiftKey && e.key === "Enter") onClick();
   };
 
   return (
