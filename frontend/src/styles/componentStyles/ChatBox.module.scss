@@ -1,5 +1,7 @@
+@import "../../App.scss";
+
 .ChatBox {
-  border: 1px solid #afb2e3;
+  border: 1px solid #ff81bd;
   border-radius: 10px;
   min-height: 40px;
 
@@ -21,11 +23,11 @@ pre {
 }
 
 .assistant {
-  background-color: #ebf1ff;
+  background-color: #ffedff;
 }
 
 .user {
-  background-color: #82abfb;
+  background-color: $main-color;
   color: #fff;
   margin-left: 20%;
 }

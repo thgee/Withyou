@@ -1,0 +1,49 @@
+@import "../../App.scss";
+
+.Actual {
+  min-height: 100vh;
+  background-color: $bg-color;
+}
+
+.chatList {
+  overflow-y: auto;
+  height: 92vh;
+  padding: 0 30px;
+  padding-bottom: 45px;
+
+  &::-webkit-scrollbar {
+    width: 3px; /*스크롤바의 너비*/
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ff81bd; /*스크롤바의 색상*/
+    background-clip: padding-box;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #fff; /*스크롤바 트랙 색상*/
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ff81bd;
+    background-color: #ffedff;
+    border-radius: 10px;
+    min-height: 40px;
+
+    padding: 10px;
+    margin: 20px 0;
+
+    .loading-text {
+      margin-right: 10px;
+    }
+  }
+}
+
+.continue_btn {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+}

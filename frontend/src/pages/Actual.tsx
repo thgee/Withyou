@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import ChatBox from "../components/ChatBox";
 import InputAns from "../components/InputAns";
-import styles from "../styles/Interview.module.scss";
+import styles from "../styles/pageStyles/Actual.module.scss";
 import { FC } from "react";
 
-const Interview: FC = () => {
+const Actual: FC = () => {
   const [messages, setMessages] = useState<{ content: String; role: String }[]>(
     []
   ); // 대화 내역
-  const [ans, setAns] = useState(""); // 면접자 답변
-  const [isLoading, setIsLoading] = useState(false); // gpt 답변 기다리는 중
+  const [ans, setAns] = useState<String>(""); // 면접자 답변
+  const [isLoading, setIsLoading] = useState<boolean>(false); // gpt 답변 기다리는 중
+  const [isError, setIsError] = useState<boolean>(false); // 토큰초과로 면접 종료될때 변경되는 플래그
   const chatListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Interview: FC = () => {
   }, []);
 
   const handleSubmit = async () => {
-    if (isLoading) return;
+    if (isLoading || isError) return;
     setIsLoading(true);
 
     setAns("");
@@ -47,7 +48,15 @@ const Interview: FC = () => {
     const data = await response.json();
 
     if (response.status === 400) {
-      console.log(data.message); // gpt api 에러 발생 시
+      setMessages([
+        ...messages,
+        {
+          content:
+            "면접이 너무 길어져 더 이상 진행할 수 없습니다.\n면접을 다시 시작해 주시기 바랍니다.\n불편을 드려 죄송합니다.",
+          role: "assistant",
+        },
+      ]);
+      setIsError(true);
     }
     if (response.status === 200) {
       setMessages(data);
@@ -57,7 +66,7 @@ const Interview: FC = () => {
   };
 
   return (
-    <div className={styles.Interview}>
+    <div className={styles.Actual}>
       <div className={styles.chatList} ref={chatListRef}>
         {messages.map((it, idx) => (
           <ChatBox key={idx} text={it.content} role={it.role} />
@@ -79,6 +88,7 @@ const Interview: FC = () => {
         onClick={handleSubmit}
         setAns={setAns}
         isLoading={isLoading}
+        isError={isError}
       />
       <button className={styles.continue_btn} onClick={handleSubmit}>
         계속 진행
@@ -87,4 +97,4 @@ const Interview: FC = () => {
   );
 };
 
-export default Interview;
+export default Actual;
