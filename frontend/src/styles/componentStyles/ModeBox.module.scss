@@ -5,14 +5,19 @@
   text-align: center;
   padding: 20px;
   margin: 20px;
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-out;
 
   &:hover {
-    background-color: $main-color;
-    color: #fff;
     cursor: pointer;
     transform: scale(1.05);
-    transition: all 0.2s ease-out;
+    outline: 1.5px solid $main-color;
+
+    transition: transform 0.2s ease-out;
+  }
+
+  &.selected {
+    background-color: $main-color;
+    color: #fff;
   }
 
   h3 {

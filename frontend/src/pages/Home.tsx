@@ -1,9 +1,11 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "../styles/pageStyles/Home.module.scss";
 import { interviewModes } from "../constants/constants";
-import ModeBox from "../components/ModeBox";
+import ModeBox from "../components/Home/ModeBox";
 
 const Home: FC = () => {
+  const [selectedMode, setSelectedMode] = useState<Number>(-1);
+
   return (
     <div className={styles.Home}>
       <div className={styles.main_container}>
@@ -19,7 +21,14 @@ const Home: FC = () => {
 
         <section className={styles.select_mode_section}>
           {interviewModes.map((it) => (
-            <ModeBox title={it.title} description={it.description} />
+            <ModeBox
+              key={it.key}
+              id={it.key}
+              title={it.title}
+              description={it.description}
+              selectedMode={selectedMode}
+              setSelectedMode={setSelectedMode}
+            />
           ))}
         </section>
       </div>

@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export interface InputAnsProps {
   ans: String;
   setAns: React.Dispatch<React.SetStateAction<String>>;
@@ -12,6 +14,9 @@ export interface ChatBoxProps {
 }
 
 export interface ModeBoxProps {
+  id: Key;
   title: String;
   description: String;
+  selectedMode: Number;
+  setSelectedMode: React.Dispatch<React.SetStateAction<Number>>;
 }
