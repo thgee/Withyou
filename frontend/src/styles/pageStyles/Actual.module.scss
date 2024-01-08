@@ -18,7 +18,7 @@
   &::-webkit-scrollbar-thumb {
     background-color: #ff81bd; /*스크롤바의 색상*/
     background-clip: padding-box;
-    border-radius: 10px;
+    border-radius: $radius;
   }
 
   &::-webkit-scrollbar-track {
@@ -30,7 +30,7 @@
     align-items: center;
     border: 1px solid #ff81bd;
     background-color: #ffedff;
-    border-radius: 10px;
+    border-radius: $radius;
     min-height: 40px;
 
     padding: 10px;

@@ -2,44 +2,16 @@
 
 .Home {
   min-height: 100vh;
+  height: fit-content;
   background-color: $bg-color;
-  display: flex;
-  justify-content: center;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
 
-.main_container {
-  @include glass_box(40%, fit-content);
-  margin: 4% auto;
-  min-width: 500px;
-}
-
-.title_section {
-  width: 80%;
-  margin: 70px auto;
-
-  h3 {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
   }
-
-  h2 {
-    color: $main-color;
-    font-size: 1.8rem;
-    margin-top: 3px;
-  }
-
-  p {
-    color: #444;
-    font-size: 0.9rem;
-    margin-top: 30px;
-  }
-}
-
-.select_mode_section {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: center;
 }
