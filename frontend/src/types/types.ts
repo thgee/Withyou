@@ -1,5 +1,14 @@
 import { Key } from "react";
 
+export interface HomeLeftContainerProps {
+  selectedMode: Number;
+  setSelectedMode: React.Dispatch<React.SetStateAction<Number>>;
+}
+
+export interface HomeRightContainerProps {
+  selectedMode: Number;
+}
+
 export interface InputAnsProps {
   ans: String;
   setAns: React.Dispatch<React.SetStateAction<String>>;

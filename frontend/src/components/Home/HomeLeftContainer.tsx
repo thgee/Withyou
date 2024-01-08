@@ -2,10 +2,12 @@ import styles from "../../styles/componentStyles/HomeLeftContainer.module.scss";
 import { FC, useState } from "react";
 import { interviewModes } from "../../constants/constants";
 import ModeBox from "./ModeBox";
+import { HomeLeftContainerProps } from "../../types/types";
 
-const HomeLeftContainer: FC = () => {
-  const [selectedMode, setSelectedMode] = useState<Number>(-1);
-
+const HomeLeftContainer: FC<HomeLeftContainerProps> = ({
+  selectedMode,
+  setSelectedMode,
+}) => {
   return (
     <div className={styles.HomeLeftContainer}>
       <section className={styles.title_section}>

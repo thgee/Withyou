@@ -1,10 +1,10 @@
 @import "../../App.scss";
 
 .HomeLeftContainer {
-  @include glass_box(40%, 600px);
-  margin: 4% auto;
+  @include glass_box(40%, 100%);
   min-width: 500px;
   float: left;
+  z-index: 2;
 }
 
 .title_section {

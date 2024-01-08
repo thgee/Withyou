@@ -1,14 +1,24 @@
 @import "../../App.scss";
 
 .HomeRightContainer {
-  @include glass_box(fit-content, 600px);
-  margin: 4% auto;
+  @include glass_box(fit-content, 100%);
   min-width: 400px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 0 30px;
   float: left;
+
+  transform: translateX(-100%);
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.2s;
+
+  &.open {
+    transform: translateX(0%);
+    opacity: 1;
+    transition: all 0.2s;
+  }
 
   h3 {
     font-size: 1.24rem;

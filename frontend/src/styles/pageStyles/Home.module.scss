@@ -8,6 +8,15 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  padding: 50px;
+  position: relative;
+  z-index: 0;
+
+  .home_wrapper {
+    height: 600px;
+    display: flex;
+    justify-content: center;
+  }
 
   &::after {
     display: block;
