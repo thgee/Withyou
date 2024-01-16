@@ -8,17 +8,33 @@
   flex-direction: column;
   padding: 0 30px;
   float: left;
-
-  transform: translateX(-100%);
   z-index: 1;
+  transform: translateX(-100%);
   opacity: 0;
-  transition: all 0.2s;
+  transition: all 1s;
 
-  &.open {
+  &.entering {
     transform: translateX(0%);
     opacity: 1;
-    transition: all 0.2s;
+    transition: all 0.5s;
   }
+
+  &.entered {
+    transform: translateX(0%);
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
+  &.exiting {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  // &.exited {
+  //   transform: translateX(-100%);
+  //   opacity: 0;
+  //   transition: all 0.5s;
+  // }
 
   h3 {
     font-size: 1.24rem;

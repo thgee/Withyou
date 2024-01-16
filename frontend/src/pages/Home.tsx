@@ -14,6 +14,7 @@ const Home: FC = () => {
           selectedMode={selectedMode}
           setSelectedMode={setSelectedMode}
         />
+
         <HomeRightContainer selectedMode={selectedMode} />
       </div>
     </div>
