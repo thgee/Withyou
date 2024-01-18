@@ -5,31 +5,31 @@
   min-width: 500px;
   float: left;
   z-index: 2;
-}
 
-.title_section {
-  width: 80%;
-  margin: 70px auto;
+  .title_section {
+    width: 80%;
+    margin: 70px auto;
 
-  h3 {
+    h3 {
+    }
+
+    h2 {
+      color: $main-color;
+      font-size: 1.8rem;
+      margin-top: 3px;
+    }
+
+    p {
+      color: #444;
+      font-size: 0.9rem;
+      margin-top: 30px;
+    }
   }
 
-  h2 {
-    color: $main-color;
-    font-size: 1.8rem;
-    margin-top: 3px;
+  .select_mode_section {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
-  p {
-    color: #444;
-    font-size: 0.9rem;
-    margin-top: 30px;
-  }
-}
-
-.select_mode_section {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: center;
 }

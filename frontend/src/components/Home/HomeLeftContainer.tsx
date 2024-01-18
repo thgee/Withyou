@@ -3,13 +3,25 @@ import { FC, useState } from "react";
 import { interviewModes } from "../../constants/constants";
 import ModeBox from "./ModeBox";
 import { HomeLeftContainerProps } from "../../types/types";
+import { Transition } from "react-transition-group";
 
 const HomeLeftContainer: FC<HomeLeftContainerProps> = ({
   selectedMode,
   setSelectedMode,
+  rightContainerWidth,
+  state,
 }) => {
+  const moveLeftAnimation = {
+    transform:
+      state === "entering"
+        ? `translateX(${(rightContainerWidth as number) / 2}px)`
+        : "none",
+
+    transition: state === "entered" ? "all 500ms ease-in-out" : "none",
+  };
+
   return (
-    <div className={styles.HomeLeftContainer}>
+    <div className={`${styles.HomeLeftContainer}`} style={moveLeftAnimation}>
       <section className={styles.title_section}>
         <h3>합격의 지름길</h3>
         <h2>위듀</h2>
