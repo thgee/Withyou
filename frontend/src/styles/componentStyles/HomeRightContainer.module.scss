@@ -1,0 +1,84 @@
+@import "../../App.scss";
+
+.HomeRightContainer {
+  @include glass_box(fit-content, 100%);
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 30px;
+  float: left;
+  z-index: 1;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+
+  &.entering {
+    transform: translateX(0%);
+    opacity: 0.8;
+  }
+
+  &.entered {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  &.exiting {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  h3 {
+    font-size: 1.24rem;
+    margin-bottom: 20px;
+    font-family: "Pretendard-Bold";
+  }
+
+  .input_user_info_box {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: $radius;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 26px 50px;
+
+    h4 {
+      color: $main-color;
+      margin-top: 30px;
+      margin-bottom: 10px;
+
+      &:first-child {
+        margin-top: 0px;
+      }
+    }
+
+    input {
+      @include glass_box(300px, 40px);
+      padding: 0 10px;
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+      border: 1px solid rgba($main-color, 0.2);
+      box-shadow: 0px 0px 3px 0px rgba($main-color, 0.1);
+
+      &:focus {
+        box-shadow: 0 0 3px $main-color;
+      }
+    }
+
+    button {
+      @include glass_box(fit-content, fit-content);
+      font-family: "Pretendard-Bold";
+      color: #fff;
+      background-color: $main-color;
+      font-weight: 400;
+      font-size: 1.14rem;
+      padding: 10px 35px;
+      border-radius: $radius;
+      cursor: pointer;
+      margin: 0 auto;
+
+      margin-top: 50px;
+    }
+  }
+}

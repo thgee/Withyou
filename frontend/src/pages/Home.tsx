@@ -1,27 +1,44 @@
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import styles from "../styles/pageStyles/Home.module.scss";
-import { interviewModes } from "../constants/constants";
-import ModeBox from "../components/ModeBox";
+
+import HomeRightContainer from "../components/Home/HomeRightContainer";
+import { Transition } from "react-transition-group";
+import HomeLeftContainer from "../components/Home/HomeLeftContainer";
 
 const Home: FC = () => {
+  const [selectedMode, setSelectedMode] = useState<Number>(-1);
+
+  // rightContainer의 width를 가져오기 위한 변수
+  const [rightContainerWidth, setRightContainerWidth] = useState<number | null>(
+    null
+  );
+  const rightContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (rightContainerRef.current) {
+      const width = rightContainerRef.current.offsetWidth;
+      setRightContainerWidth(width);
+    }
+  }, []);
+
   return (
     <div className={styles.Home}>
-      <div className={styles.main_container}>
-        <section className={styles.title_section}>
-          <h3>합격의 지름길</h3>
-          <h2>위듀</h2>
-          <p>
-            With you, we do
-            <br />
-            면접에 합격하는 그날까지 위듀는 당신 곁에 있습니다
-          </p>
-        </section>
+      <div className={styles.home_wrapper}>
+        <Transition in={selectedMode !== -1} timeout={100}>
+          {(state: any) => (
+            <HomeLeftContainer
+              rightContainerWidth={rightContainerWidth}
+              selectedMode={selectedMode}
+              setSelectedMode={setSelectedMode}
+              state={state}
+            />
+          )}
+        </Transition>
 
-        <section className={styles.select_mode_section}>
-          {interviewModes.map((it) => (
-            <ModeBox title={it.title} description={it.description} />
-          ))}
-        </section>
+        <HomeRightContainer
+          selectedMode={selectedMode}
+          rightContainerRef={rightContainerRef}
+        />
       </div>
     </div>
   );
