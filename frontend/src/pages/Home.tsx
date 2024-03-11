@@ -19,7 +19,7 @@ const Home: FC = () => {
       const width = rightContainerRef.current.offsetWidth;
       setRightContainerWidth(width);
     }
-  }, [selectedMode]);
+  }, []);
 
   return (
     <div className={styles.Home}>

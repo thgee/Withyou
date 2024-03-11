@@ -15,7 +15,7 @@
 
   &.entering {
     transform: translateX(0%);
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
   &.entered {
@@ -27,11 +27,6 @@
     transform: translateX(-100%);
     opacity: 0;
   }
-  // &.exited {
-  //   transform: translateX(-100%);
-  //   opacity: 0;
-  //   transition: all 0.5s;
-  // }
 
   h3 {
     font-size: 1.24rem;

@@ -8,7 +8,7 @@ const HomeRightContainer: FC<HomeRightContainerProps> = ({
   rightContainerRef,
 }) => {
   return (
-    <Transition in={selectedMode !== -1} timeout={500} unmountOnExit>
+    <Transition in={selectedMode !== -1} timeout={500}>
       {(state: any) => (
         <div
           ref={rightContainerRef}

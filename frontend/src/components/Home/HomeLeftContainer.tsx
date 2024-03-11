@@ -1,5 +1,5 @@
 import styles from "../../styles/componentStyles/HomeLeftContainer.module.scss";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { interviewModes } from "../../constants/constants";
 import ModeBox from "./ModeBox";
 import { HomeLeftContainerProps } from "../../types/types";
@@ -11,13 +11,20 @@ const HomeLeftContainer: FC<HomeLeftContainerProps> = ({
   rightContainerWidth,
   state,
 }) => {
+  const firstMountFlag = useRef(false); // 컴포넌트 마운트 시에 에니메이션 적용하지 않기 위한 변수
+
+  useEffect(() => {
+    firstMountFlag.current = true;
+  }, []);
+
   const moveLeftAnimation = {
     transform:
-      state === "entering"
+      state === "exited"
         ? `translateX(${(rightContainerWidth as number) / 2}px)`
         : "none",
+    opacity: firstMountFlag.current ? "100%" : "0%",
 
-    transition: state === "entered" ? "all 500ms ease-in-out" : "none",
+    transition: "all 500ms ease-in-out",
   };
 
   return (
