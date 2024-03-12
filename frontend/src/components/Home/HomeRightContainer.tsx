@@ -1,15 +1,25 @@
 import styles from "../../styles/componentStyles/HomeRightContainer.module.scss";
-import { FC, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { HomeRightContainerProps } from "../../types/types";
 import { Transition } from "react-transition-group";
 import { useNavigate } from "react-router-dom";
+import { nameJobContext } from "../../App";
+import { NameJobContext } from "../../types/types";
 
 const HomeRightContainer: FC<HomeRightContainerProps> = ({
   selectedMode,
   rightContainerRef,
 }) => {
-  const [name, setName] = useState<string>("");
-  const [job, setJob] = useState<string>("");
+  const { name, setName, job, setJob } = useContext(
+    nameJobContext
+  ) as NameJobContext;
+
+  // 마운트 시 이름과 직업 공백으로 초기화
+  useEffect(() => {
+    setName("");
+    setJob("");
+  }, []);
+
   const navigator = useNavigate();
 
   const handleInterviewStart = () => {
@@ -54,6 +64,9 @@ const HomeRightContainer: FC<HomeRightContainerProps> = ({
               value={job}
               onChange={(e) => {
                 setJob(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key == "Enter") handleInterviewStart();
               }}
             />
             <button onClick={handleInterviewStart}>면접 시작</button>
