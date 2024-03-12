@@ -9,7 +9,7 @@
   padding: 0 30px;
   float: left;
   z-index: 1;
-  transform: translateX(-100%);
+  transform: translateX(-70%);
   opacity: 0;
   transition: all 0.5s ease-in-out;
 
@@ -24,7 +24,7 @@
   }
 
   &.exiting {
-    transform: translateX(-100%);
+    transform: translateX(-70%);
     opacity: 0;
   }
 
