@@ -7,9 +7,7 @@ import { nameJobContext } from "../App";
 import { NameJobContext } from "../types/types";
 
 const Actual: FC = () => {
-  const { name, setName, job, setJob } = useContext(
-    nameJobContext
-  ) as NameJobContext;
+  const { name, job } = useContext(nameJobContext) as NameJobContext;
   const [messages, setMessages] = useState<{ content: String; role: String }[]>(
     []
   ); // 대화 내역
@@ -46,6 +44,8 @@ const Actual: FC = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: name,
+        job: job,
         messages: updatedMessages,
       }),
     });
