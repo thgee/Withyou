@@ -9,9 +9,9 @@ router.post("/", async function (req: any, res: any) {
   try {
     // GPT 호출
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-0125",
       temperature: 0.5,
-      max_tokens: 4000, // max token : 4097
+      max_tokens: 10, // max token : 4097
       messages: prompt,
     });
 
