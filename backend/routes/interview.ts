@@ -3,16 +3,15 @@ const initPrompt = require("../utils/initPrompt");
 
 router.post("/", async function (req: any, res: any) {
   const openai = req.openai;
-  let { messages } = req.body;
+  let { name, job, messages } = req.body;
 
-  let prompt = [...initPrompt, ...messages]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
-
+  let prompt = [...initPrompt(name, job), ...messages]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
   try {
     // GPT 호출
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       temperature: 0.5,
-      max_tokens: 500, // max token : 4097
+      max_tokens: 4000, // max token : 4097
       messages: prompt,
     });
 

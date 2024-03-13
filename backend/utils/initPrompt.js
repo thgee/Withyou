@@ -1,7 +1,4 @@
-let job = "직무";
-let name = "이름";
-
-const initPrompt = [
+const initPrompt = (name, job) => [
   {
     role: `system`,
     content: `

@@ -32,3 +32,10 @@ export interface ModeBoxProps {
   selectedMode: Number;
   setSelectedMode: React.Dispatch<React.SetStateAction<Number>>;
 }
+
+export interface NameJobContext {
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  job: string;
+  setJob: React.Dispatch<React.SetStateAction<string>>;
+}
