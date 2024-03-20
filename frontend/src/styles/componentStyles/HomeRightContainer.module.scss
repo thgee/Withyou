@@ -2,24 +2,26 @@
 
 .HomeRightContainer {
   @include glass_box(fit-content, 100%);
-  min-width: 400px;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.1);
+
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0 30px;
   float: left;
   z-index: 1;
   transform: translateX(-70%);
   opacity: 0;
   transition: all 0.4s ease-in-out;
+  padding-left: 5%;
+  padding-right: 20px;
 
   &.entering {
-    transform: translateX(0%);
+    transform: translateX(-5%);
     opacity: 0.8;
   }
 
   &.entered {
-    transform: translateX(0%);
+    transform: translateX(-5%);
     opacity: 1;
   }
 
@@ -30,18 +32,18 @@
 
   h3 {
     font-size: 1.24rem;
-    margin-bottom: 20px;
+    margin-left: 30px;
+    margin-top: 10%;
     font-family: "Pretendard-Bold";
   }
 
   .input_user_info_box {
     display: flex;
-    background-color: rgba(255, 255, 255, 0.5);
     border-radius: $radius;
     justify-content: center;
     flex-direction: column;
     margin: 0;
-    padding: 26px 50px;
+    padding: 46px 36px;
 
     h4 {
       color: $main-color;
@@ -58,7 +60,7 @@
       padding: 0 10px;
       background: rgba(255, 255, 255, 0.2);
       outline: none;
-      border: 1px solid rgba($main-color, 0.2);
+      border: 1px solid rgba($main-color, 0.8);
       box-shadow: 0px 0px 3px 0px rgba($main-color, 0.1);
 
       &:focus {

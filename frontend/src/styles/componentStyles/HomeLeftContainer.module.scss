@@ -2,6 +2,7 @@
 
 .HomeLeftContainer {
   @include glass_box(40%, 100%);
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.1);
   min-width: 500px;
   float: left;
   z-index: 2;
