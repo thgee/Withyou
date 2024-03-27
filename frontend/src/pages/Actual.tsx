@@ -108,32 +108,34 @@ const Actual: FC = () => {
           </div>
         </div>
         <div className={styles.actual_right}>
-          <div className={styles.chatList} ref={chatListRef}>
-            {messages.map((it, idx) => (
-              <ChatBox key={idx} text={it.content} role={it.role} />
-            ))}
-            {isLoading ? (
-              <div className={styles.loading}>
-                <div className={styles[`loading-text`]}>
-                  면접관이 답변을 준비하고 있습니다
+          <div className={styles.actual_right_wrapper}>
+            <div className={styles.chatList} ref={chatListRef}>
+              {messages.map((it, idx) => (
+                <ChatBox key={idx} text={it.content} role={it.role} />
+              ))}
+              {isLoading ? (
+                <div className={styles.loading}>
+                  <div className={styles[`loading-text`]}>
+                    면접관이 답변을 준비하고 있습니다
+                  </div>
+                  <img
+                    width="30px"
+                    src={`${process.env.PUBLIC_URL}/assets/Spinner2.gif`}
+                  />
                 </div>
-                <img
-                  width="30px"
-                  src={`${process.env.PUBLIC_URL}/assets/Spinner2.gif`}
-                />
-              </div>
-            ) : null}
-          </div>
-          <InputAns
-            ans={ans}
-            onClick={handleSubmit}
-            setAns={setAns}
-            isLoading={isLoading}
-            isError={isError}
-          />
-          <button className={styles.continue_btn} onClick={handleSubmit}>
+              ) : null}
+            </div>
+            <InputAns
+              ans={ans}
+              onClick={handleSubmit}
+              setAns={setAns}
+              isLoading={isLoading}
+              isError={isError}
+            />
+            {/* <button className={styles.continue_btn} onClick={handleSubmit}>
             계속 진행
-          </button>
+          </button> */}
+          </div>
         </div>
       </div>
     </div>
