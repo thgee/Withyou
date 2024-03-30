@@ -37,27 +37,34 @@
         }
       }
 
-      .mode_wrapper {
-        h4 {
-          color: #999;
-        }
-        ul {
-          list-style: none;
-        }
-      }
+      .mode_wrapper,
       .extra_wrapper {
-        flex-grow: 0.3;
-        h4 {
-          color: #999;
-        }
-        ul {
-          list-style: none;
-        }
-      }
+        margin-left: 12px;
 
-      .mode_wrapper {
-      }
-      .extra_wrapper {
+        .mode_title {
+          color: #999;
+          font-size: 12px;
+          margin-bottom: 18px;
+        }
+        ul {
+          list-style: none;
+          li {
+            display: flex;
+            align-items: center;
+            margin: 14px 5px;
+
+            // 아이콘
+            > *:first-child {
+              font-size: 14px;
+              margin-right: 18px;
+            }
+            span {
+              font-size: 13px;
+              color: #444;
+              font-family: "Pretendard-Bold";
+            }
+          }
+        }
       }
     }
 

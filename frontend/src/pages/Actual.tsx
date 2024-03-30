@@ -5,7 +5,12 @@ import styles from "../styles/pageStyles/Actual.module.scss";
 import { FC } from "react";
 import { nameJobContext } from "../App";
 import { NameJobContext } from "../types/types";
-
+import { FaMountainSun } from "react-icons/fa6";
+import { FaBookOpen } from "react-icons/fa";
+import { BsEyeglasses } from "react-icons/bs";
+import { AiFillWechat } from "react-icons/ai";
+import { VscDebugRestart } from "react-icons/vsc";
+import { IoHomeSharp } from "react-icons/io5";
 const Actual: FC = () => {
   const { name, job } = useContext(nameJobContext) as NameJobContext;
   const [messages, setMessages] = useState<{ content: String; role: String }[]>(
@@ -82,27 +87,36 @@ const Actual: FC = () => {
             <h2>{`연습면접`}</h2>
           </div>
           <div className={styles.mode_wrapper}>
-            <h4>MODE</h4>
+            <div className={styles.mode_title}>MODE</div>
             <ul>
               <li>
-                폰트어썸<span>실전면접</span>
+                <FaBookOpen color="999" />
+                <span>연습면접</span>
               </li>
               <li>
-                폰트어썸<span>하드면접</span>
+                <AiFillWechat color="999" />
+                <span>실전면접</span>
               </li>
               <li>
-                폰트어썸<span>시뮬레이션</span>
+                <FaMountainSun color="999" />
+                <span>하드면접</span>
+              </li>
+              <li>
+                <BsEyeglasses color="999" />
+                <span>시뮬레이션</span>
               </li>
             </ul>
           </div>
           <div className={styles.extra_wrapper}>
-            <h4>EXTRA</h4>
+            <div className={styles.mode_title}>EXTRA</div>
             <ul>
               <li>
-                폰트어썸<span>면접 재시작</span>
+                <VscDebugRestart color="999" />
+                <span>면접 재시작</span>
               </li>
               <li>
-                폰트어썸<span>처음 화면</span>
+                <IoHomeSharp color="999" />
+                <span>처음 화면</span>
               </li>
             </ul>
           </div>
