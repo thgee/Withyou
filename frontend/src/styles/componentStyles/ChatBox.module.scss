@@ -1,33 +1,31 @@
 @import "../../App.scss";
 
 .ChatBox {
-  border: 1px solid #ff81bd;
-  border-radius: $radius;
+  border: 1.2px solid $main-color;
+  border-radius: 12px;
   min-height: 40px;
-
-  padding: 10px;
+  padding: 6px;
   margin: 20px 0;
-}
 
-pre {
-  font-size: 17px;
-  font-family: "Pretendard-Regular";
+  &.assistant {
+    background-color: #fff;
+  }
 
-  line-height: 120%;
+  &.user {
+    background-color: $main-color;
+    color: #fff;
+    margin-left: 20%;
+  }
 
-  word-wrap: break-word;
-  white-space: pre-wrap;
+  pre {
+    font-size: 14px;
+    font-family: "Pretendard-Regular";
 
-  margin: 0;
-  padding: 0;
-}
+    line-height: 120%;
 
-.assistant {
-  background-color: #ffedff;
-}
-
-.user {
-  background-color: $main-color;
-  color: #fff;
-  margin-left: 20%;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
+    padding: 8px;
+  }
 }

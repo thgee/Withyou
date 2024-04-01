@@ -13,18 +13,39 @@ const InputAns: FC<InputAnsProps> = ({
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textareaHeight, setTextareaHeight] = useState("auto");
-  const [rows, setRows] = useState(1);
 
   useEffect(() => {
     adjustTextareaHeight();
   }, [ans]);
 
+  // 처음 textarea의 높이를 저장할 변수
+  const fisrtTextareaHeight = useRef<number | undefined>();
+
+  useEffect(() => {
+    // 마운트 시 첫 높이 저장
+    fisrtTextareaHeight.current = textareaRef.current?.clientHeight;
+  }, []);
+
   // textarea 높이 자동조절
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
     if (textarea == null) return;
+
+    // 처음 height인 1줄짜리 height로 초기화
     textarea.style.height = "auto";
+
+    // textarea 높이가 처음 높이보다 어느정도 커지면 더이상 커지지 않게 함
+    if (
+      fisrtTextareaHeight.current !== undefined &&
+      textarea.scrollHeight > fisrtTextareaHeight.current * 7
+    ) {
+      textarea.style.height = `${fisrtTextareaHeight.current * 7}px`;
+      return;
+    }
+
+    // scrollHeight만큼 textarea를 증가시킴
     textarea.style.height = `${textarea.scrollHeight}px`;
+
     setTextareaHeight(`${textarea.scrollHeight}px`);
   };
 
@@ -41,7 +62,7 @@ const InputAns: FC<InputAnsProps> = ({
       <textarea
         ref={textareaRef}
         style={{ height: textareaHeight }}
-        rows={rows}
+        rows={1}
         value={isError ? "면접을 다시 시작해 주세요." : (ans as string)}
         onChange={(e) => {
           setAns(e.target.value);

@@ -1,49 +1,135 @@
 @import "../../App.scss";
 
 .Actual {
-  min-height: 100vh;
+  height: 100vh;
   background-color: $bg-color;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
-.chatList {
-  overflow-y: auto;
-  height: 92vh;
-  padding: 0 30px;
-  padding-bottom: 45px;
-
-  &::-webkit-scrollbar {
-    width: 3px; /*스크롤바의 너비*/
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #ff81bd; /*스크롤바의 색상*/
-    background-clip: padding-box;
-    border-radius: $radius;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #fff; /*스크롤바 트랙 색상*/
-  }
-
-  .loading {
+  .actual_container {
+    width: 85%;
+    height: 90%;
+    background-color: $light-color;
     display: flex;
-    align-items: center;
-    border: 1px solid #ff81bd;
-    background-color: #ffedff;
+    padding: 20px;
     border-radius: $radius;
-    min-height: 40px;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.1);
 
-    padding: 10px;
-    margin: 20px 0;
+    .actual_left {
+      border-right: 1.5px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-right: 20px;
+      flex-basis: 200px;
+      flex-shrink: 0;
 
-    .loading-text {
-      margin-right: 10px;
+      .title {
+        display: flex;
+        align-items: center;
+        > * {
+          margin: 8px;
+        }
+        > h2 {
+          color: $main-color;
+        }
+      }
+
+      .extra_wrapper {
+        margin-bottom: 30px;
+      }
+
+      .mode_wrapper,
+      .extra_wrapper {
+        margin-left: 12px;
+
+        .mode_title {
+          color: #999;
+          font-size: 12px;
+          margin-bottom: 18px;
+        }
+        ul {
+          list-style: none;
+          li {
+            display: flex;
+            align-items: center;
+            margin: 14px 5px;
+
+            // 아이콘
+            > *:first-child {
+              font-size: 14px;
+              margin-right: 18px;
+            }
+            span {
+              font-size: 13px;
+              color: #444;
+              font-family: "Pretendard-Bold";
+            }
+          }
+        }
+      }
+    }
+
+    .actual_right {
+      flex-grow: 1;
+      position: relative;
+      padding: 0 30px;
+
+      .actual_right_wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .chatList {
+        overflow-y: auto;
+        width: 100%;
+        height: 85%;
+        padding: 10px;
+
+        &::-webkit-scrollbar {
+          width: 3px; /*스크롤바의 너비*/
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $main-color; /*스크롤바의 색상*/
+          background-clip: padding-box;
+          border-radius: $radius;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: #fff; /*스크롤바 트랙 색상*/
+        }
+
+        .loading {
+          display: flex;
+          align-items: center;
+          border: 1px solid $main-color;
+          background-color: #fff;
+          border-radius: $radius;
+          min-height: 40px;
+
+          padding: 6px;
+          margin: 20px 0;
+
+          .loading-text {
+            font-size: 14px;
+            font-family: "Pretendard-Regular";
+
+            line-height: 120%;
+
+            word-wrap: break-word;
+            word-break: break-all;
+            white-space: pre-wrap;
+            padding: 8px;
+          }
+        }
+      }
+
+      .continue_btn {
+      }
     }
   }
-}
-
-.continue_btn {
-  position: absolute;
-  bottom: 100px;
-  right: 100px;
 }

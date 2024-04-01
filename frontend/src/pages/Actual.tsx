@@ -5,7 +5,12 @@ import styles from "../styles/pageStyles/Actual.module.scss";
 import { FC } from "react";
 import { nameJobContext } from "../App";
 import { NameJobContext } from "../types/types";
-
+import { FaMountainSun } from "react-icons/fa6";
+import { FaBookOpen } from "react-icons/fa";
+import { BsEyeglasses } from "react-icons/bs";
+import { AiFillWechat } from "react-icons/ai";
+import { VscDebugRestart } from "react-icons/vsc";
+import { IoHomeSharp } from "react-icons/io5";
 const Actual: FC = () => {
   const { name, job } = useContext(nameJobContext) as NameJobContext;
   const [messages, setMessages] = useState<{ content: String; role: String }[]>(
@@ -72,32 +77,83 @@ const Actual: FC = () => {
 
   return (
     <div className={styles.Actual}>
-      <div className={styles.chatList} ref={chatListRef}>
-        {messages.map((it, idx) => (
-          <ChatBox key={idx} text={it.content} role={it.role} />
-        ))}
-        {isLoading ? (
-          <div className={styles.loading}>
-            <div className={styles[`loading-text`]}>
-              면접관이 답변을 준비하고 있습니다
-            </div>
+      <div className={styles.actual_container}>
+        <div className={styles.actual_left}>
+          <div className={styles.title}>
             <img
-              width="30px"
-              src={`${process.env.PUBLIC_URL}/assets/Spinner2.gif`}
+              src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+              width={"50px"}
             />
+            <h2>{`연습면접`}</h2>
           </div>
-        ) : null}
+          <div className={styles.mode_wrapper}>
+            <div className={styles.mode_title}>MODE</div>
+            <ul>
+              <li>
+                <FaBookOpen color="999" />
+                <span>연습면접</span>
+              </li>
+              <li>
+                <AiFillWechat color="999" />
+                <span>실전면접</span>
+              </li>
+              <li>
+                <FaMountainSun color="999" />
+                <span>하드면접</span>
+              </li>
+              <li>
+                <BsEyeglasses color="999" />
+                <span>시뮬레이션</span>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.extra_wrapper}>
+            <div className={styles.mode_title}>EXTRA</div>
+            <ul>
+              <li>
+                <VscDebugRestart color="999" />
+                <span>면접 재시작</span>
+              </li>
+              <li>
+                <IoHomeSharp color="999" />
+                <span>처음 화면</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className={styles.actual_right}>
+          <div className={styles.actual_right_wrapper}>
+            <div className={styles.chatList} ref={chatListRef}>
+              {messages.map((it, idx) => (
+                <ChatBox key={idx} text={it.content} role={it.role} />
+              ))}
+              {isLoading ? (
+                <div className={styles.loading}>
+                  <div className={styles[`loading-text`]}>
+                    면접관이 답변을 준비하고 있습니다
+                  </div>
+                  <img
+                    width="30px"
+                    src={`${process.env.PUBLIC_URL}/assets/Spinner2.gif`}
+                  />
+                </div>
+              ) : null}
+            </div>
+            <InputAns
+              ans={ans}
+              onClick={handleSubmit}
+              setAns={setAns}
+              isLoading={isLoading}
+              isError={isError}
+            />
+
+            {/* 계속 진행 버튼 필요 시 주석해제 */}
+            {/* <button className={styles.continue_btn} onClick={handleSubmit}>
+            계속 진행
+          </button> */}
+          </div>
+        </div>
       </div>
-      <InputAns
-        ans={ans}
-        onClick={handleSubmit}
-        setAns={setAns}
-        isLoading={isLoading}
-        isError={isError}
-      />
-      <button className={styles.continue_btn} onClick={handleSubmit}>
-        계속 진행
-      </button>
     </div>
   );
 };
