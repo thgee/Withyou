@@ -37,6 +37,10 @@
         }
       }
 
+      .extra_wrapper {
+        margin-bottom: 30px;
+      }
+
       .mode_wrapper,
       .extra_wrapper {
         margin-left: 12px;
@@ -107,11 +111,19 @@
           border-radius: $radius;
           min-height: 40px;
 
-          padding: 10px;
+          padding: 6px;
           margin: 20px 0;
 
           .loading-text {
-            margin-right: 10px;
+            font-size: 14px;
+            font-family: "Pretendard-Regular";
+
+            line-height: 120%;
+
+            word-wrap: break-word;
+            word-break: break-all;
+            white-space: pre-wrap;
+            padding: 8px;
           }
         }
       }

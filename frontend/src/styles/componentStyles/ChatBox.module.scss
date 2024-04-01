@@ -4,8 +4,7 @@
   border: 1.2px solid $main-color;
   border-radius: 12px;
   min-height: 40px;
-
-  padding: 14px;
+  padding: 6px;
   margin: 20px 0;
 
   &.assistant {
@@ -27,7 +26,6 @@
     word-wrap: break-word;
     word-break: break-all;
     white-space: pre-wrap;
-    margin: 0;
-    padding: 0;
+    padding: 8px;
   }
 }
