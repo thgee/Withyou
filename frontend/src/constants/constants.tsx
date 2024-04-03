@@ -20,9 +20,4 @@ export const interviewModes: {
     title: "하드면접",
     description: "까다로운 면접관을 만났을 경우를 대비한 면접",
   },
-  {
-    key: 3,
-    title: "시뮬레이션",
-    description: "숙련된 면접자의 답변을 볼 수 있는 면접 시뮬레이션",
-  },
 ];

@@ -23,19 +23,7 @@ const HomeRightContainer: FC<HomeRightContainerProps> = ({
   const navigator = useNavigate();
 
   const handleInterviewStart = () => {
-    switch (selectedMode) {
-      case 0:
-        break;
-      case 1:
-        navigator("/actual");
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      default:
-        break;
-    }
+    navigator(`/interview/${selectedMode}`);
   };
 
   return (

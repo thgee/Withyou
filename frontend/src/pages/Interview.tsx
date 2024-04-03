@@ -1,17 +1,21 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import ChatBox from "../components/ChatBox";
 import InputAns from "../components/InputAns";
-import styles from "../styles/pageStyles/Actual.module.scss";
+import styles from "../styles/pageStyles/Interview.module.scss";
 import { FC } from "react";
 import { nameJobContext } from "../App";
 import { NameJobContext } from "../types/types";
 import { FaMountainSun } from "react-icons/fa6";
 import { FaBookOpen } from "react-icons/fa";
-import { BsEyeglasses } from "react-icons/bs";
 import { AiFillWechat } from "react-icons/ai";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoHomeSharp } from "react-icons/io5";
-const Actual: FC = () => {
+import { useNavigate, useParams } from "react-router-dom";
+import { interviewModes } from "../constants/constants";
+
+const Interview: FC = () => {
+  const { selectedMode } = useParams();
+  const restartToggle = useRef<boolean>(false); // 모드변경, 재시작 판정 토글
   const { name, job } = useContext(nameJobContext) as NameJobContext;
   const [messages, setMessages] = useState<{ content: String; role: String }[]>(
     []
@@ -21,16 +25,25 @@ const Actual: FC = () => {
   const [isError, setIsError] = useState<boolean>(false); // 토큰초과로 면접 종료될때 변경되는 플래그
   const chatListRef = useRef<HTMLDivElement>(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     // 스크롤을 항상 가장 아래로 이동
     if (chatListRef.current !== null)
       chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
   }, [messages]);
 
-  // 페이지 로드 시 gpt부터 말하도록 설정
+  // 페이지 마운트 시 gpt부터 말하도록 submit 함수를 호출
   useEffect(() => {
     handleSubmit();
-  }, []);
+  }, [restartToggle.current]);
+
+  // 모드 변경 시 대화내역 초기화 후 페이지 이동하는 함수
+  const handleChangeMode = (modeNum: number) => {
+    restartToggle.current = !restartToggle.current;
+    setMessages([]);
+    navigate(`/interview/${modeNum}`);
+  };
 
   const handleSubmit = async () => {
     if (isLoading || isError) return;
@@ -76,53 +89,64 @@ const Actual: FC = () => {
   };
 
   return (
-    <div className={styles.Actual}>
-      <div className={styles.actual_container}>
-        <div className={styles.actual_left}>
+    <div className={styles.Interview}>
+      <div className={styles.interview_container}>
+        <div className={styles.interview_left}>
           <div className={styles.title}>
             <img
               src={`${process.env.PUBLIC_URL}/assets/logo.png`}
               width={"50px"}
             />
-            <h2>{`연습면접`}</h2>
+            <h2>{interviewModes[Number(selectedMode)].title}</h2>
           </div>
           <div className={styles.mode_wrapper}>
             <div className={styles.mode_title}>MODE</div>
             <ul>
-              <li>
+              <li
+                className={
+                  Number(selectedMode) === 0 ? styles.selected : "none"
+                }
+                onClick={() => handleChangeMode(0)}
+              >
                 <FaBookOpen color="999" />
                 <span>연습면접</span>
               </li>
-              <li>
+              <li
+                className={
+                  Number(selectedMode) === 1 ? styles.selected : "none"
+                }
+                onClick={() => handleChangeMode(1)}
+              >
                 <AiFillWechat color="999" />
                 <span>실전면접</span>
               </li>
-              <li>
+              <li
+                className={
+                  Number(selectedMode) === 2 ? styles.selected : "none"
+                }
+                onClick={() => handleChangeMode(2)}
+              >
                 <FaMountainSun color="999" />
                 <span>하드면접</span>
-              </li>
-              <li>
-                <BsEyeglasses color="999" />
-                <span>시뮬레이션</span>
               </li>
             </ul>
           </div>
           <div className={styles.extra_wrapper}>
             <div className={styles.mode_title}>EXTRA</div>
             <ul>
-              <li>
+              <li onClick={() => handleChangeMode(Number(selectedMode))}>
                 <VscDebugRestart color="999" />
                 <span>면접 재시작</span>
               </li>
-              <li>
+              <li onClick={() => navigate(`/`)}>
                 <IoHomeSharp color="999" />
                 <span>처음 화면</span>
               </li>
             </ul>
           </div>
         </div>
-        <div className={styles.actual_right}>
-          <div className={styles.actual_right_wrapper}>
+        <div className={styles.interview_right}>
+          <div className={styles.interview_right_wrapper}>
             <div className={styles.chatList} ref={chatListRef}>
               {messages.map((it, idx) => (
                 <ChatBox key={idx} text={it.content} role={it.role} />
@@ -158,4 +182,4 @@ const Actual: FC = () => {
   );
 };
 
-export default Actual;
+export default Interview;

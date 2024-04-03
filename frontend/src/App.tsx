@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { createContext, useState } from "react";
 import "./App.scss";
-import Actual from "./pages/Actual";
+import Interview from "./pages/Interview";
 import Home from "./pages/Home";
 import { NameJobContext } from "./types/types";
 
@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/actual" element={<Actual />} />
+          <Route path="/interview/:selectedMode" element={<Interview />} />
         </Routes>
       </BrowserRouter>
     </nameJobContext.Provider>
