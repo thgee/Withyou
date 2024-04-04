@@ -22,7 +22,7 @@ const ModeBox: FC<ModeBoxProps> = ({
         styles[selectedMode === (id as Number) ? "selected" : "not_selected"]
       }`}
       style={{
-        left: `${50 - (Number(id) - 1) * 28}%`,
+        left: `${50 + (Number(id) - 1) * 28}%`,
         transform: `translateX(-50%)`,
         zIndex: id === selectedMode ? 1 : 0,
       }}
