@@ -1,17 +1,18 @@
 const router = require("express").Router();
 const initPrompt = require("../utils/initPrompt");
 
-router.post("/", async function (req: any, res: any) {
+router.post("/:mode", async function (req: any, res: any) {
   const openai = req.openai;
   let { name, job, messages } = req.body;
-
-  let prompt = [...initPrompt(name, job), ...messages]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
+  let mode = Number(req.params.mode);
+  let prompt = [...initPrompt(name, job, mode)]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
+  if (mode !== 0) prompt.push(...messages); // 연습모드는 대화내역 안 넣어줌
   try {
     // GPT 호출
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo-0125",
-      temperature: 0.5,
-      max_tokens: 2, // max token : 4097
+      temperature: mode !== 0 ? 0.5 : 1,
+      max_tokens: 2000, // max token : 4097
       messages: prompt,
     });
 

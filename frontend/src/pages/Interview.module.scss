@@ -1,17 +1,17 @@
 @import "../App.scss";
 
 .Interview {
-  min-height: 100vh;
+  height: 100vh;
   background-color: $bg-color;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 50px 0;
+  padding: 10px 0;
 
   .interview_container {
     width: 80%;
-    height: 1000px;
+    height: 95%;
     max-width: 1200px;
     min-width: 700px;
     background-color: $light-color;
@@ -30,6 +30,7 @@
       flex-shrink: 0;
 
       .title {
+        cursor: pointer;
         display: flex;
         align-items: center;
         > * {
@@ -42,7 +43,7 @@
 
       .extra_wrapper {
         margin-bottom: 30px;
-        flex-basis: 200px;
+        flex-basis: 15%;
       }
 
       .mode_wrapper,

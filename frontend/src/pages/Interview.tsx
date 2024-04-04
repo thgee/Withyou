@@ -42,6 +42,7 @@ const Interview: FC = () => {
   const handleChangeMode = (modeNum: number) => {
     restartToggle.current = !restartToggle.current;
     setMessages([]);
+    setIsError(false);
     navigate(`/interview/${modeNum}`);
   };
 
@@ -56,17 +57,20 @@ const Interview: FC = () => {
     ];
     setMessages(updatedMessages);
 
-    const response = await fetch(`http://localhost:8080/interview`, {
-      method: `POST`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        job: job,
-        messages: updatedMessages,
-      }),
-    });
+    const response = await fetch(
+      `http://localhost:8080/interview/${selectedMode}`,
+      {
+        method: `POST`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          job: job,
+          messages: updatedMessages,
+        }),
+      }
+    );
 
     const data = await response.json();
 
@@ -92,7 +96,12 @@ const Interview: FC = () => {
     <div className={styles.Interview}>
       <div className={styles.interview_container}>
         <div className={styles.interview_left}>
-          <div className={styles.title}>
+          <div
+            onClick={() => {
+              navigate("/");
+            }}
+            className={styles.title}
+          >
             <img
               src={`${process.env.PUBLIC_URL}/assets/logo.png`}
               width={"50px"}
