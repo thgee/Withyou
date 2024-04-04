@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useContext } from "react";
-import ChatBox from "../components/ChatBox";
-import InputAns from "../components/InputAns";
-import styles from "../styles/pageStyles/Interview.module.scss";
+import ChatBox from "../components/Interview/ChatBox";
+import InputAns from "../components/Interview/InputAns";
+import styles from "./Interview.module.scss";
 import { FC } from "react";
 import { nameJobContext } from "../App";
 import { NameJobContext } from "../types/types";

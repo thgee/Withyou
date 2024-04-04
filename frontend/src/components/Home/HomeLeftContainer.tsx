@@ -1,4 +1,4 @@
-import styles from "../../styles/componentStyles/HomeLeftContainer.module.scss";
+import styles from "./HomeLeftContainer.module.scss";
 import { FC, useEffect, useRef, useState } from "react";
 import { interviewModes } from "../../constants/constants";
 import ModeBox from "./ModeBox";

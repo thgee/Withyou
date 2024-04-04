@@ -1,4 +1,4 @@
-import styles from "../../styles/componentStyles/HomeRightContainer.module.scss";
+import styles from "./HomeRightContainer.module.scss";
 import { FC, useContext, useEffect, useState } from "react";
 import { HomeRightContainerProps } from "../../types/types";
 import { Transition } from "react-transition-group";

@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import "../App.scss";
 
 .Home {
   min-height: 100vh;
@@ -16,7 +16,7 @@
   justify-content: center;
 
   .home_wrapper {
-    height: 600px;
+    height: 800px;
     display: flex;
     justify-content: center;
   }
