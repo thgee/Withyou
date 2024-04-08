@@ -12,6 +12,7 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoHomeSharp } from "react-icons/io5";
 import { useNavigate, useParams } from "react-router-dom";
 import { interviewModes } from "../constants/constants";
+import { useSpring, animated } from "@react-spring/web";
 
 const Interview: FC = () => {
   const { selectedMode } = useParams();
@@ -25,8 +26,9 @@ const Interview: FC = () => {
   const [isError, setIsError] = useState<boolean>(false); // 토큰초과로 면접 종료될때 변경되는 플래그
   const chatListRef = useRef<HTMLDivElement>(null);
 
-  const navigate = useNavigate();
+  const abortController = useRef<AbortController | null>(null);
 
+  const navigate = useNavigate();
   useEffect(() => {
     // 스크롤을 항상 가장 아래로 이동
     if (chatListRef.current !== null)
@@ -35,7 +37,15 @@ const Interview: FC = () => {
 
   // 페이지 마운트 시 gpt부터 말하도록 submit 함수를 호출
   useEffect(() => {
-    handleSubmit();
+    setTimeout(() => {
+      handleSubmit();
+    }, 2000);
+
+    return () => {
+      setIsLoading(false);
+      console.log(isLoading);
+      abortController.current?.abort();
+    };
   }, [restartToggle.current]);
 
   // 모드 변경 시 대화내역 초기화 후 페이지 이동하는 함수
@@ -57,6 +67,7 @@ const Interview: FC = () => {
     ];
     setMessages(updatedMessages);
 
+    abortController.current = new AbortController();
     const response = await fetch(
       `http://localhost:8080/interview/${selectedMode}`,
       {
@@ -69,6 +80,7 @@ const Interview: FC = () => {
           job: job,
           messages: updatedMessages,
         }),
+        signal: abortController.current?.signal,
       }
     );
 
@@ -93,7 +105,7 @@ const Interview: FC = () => {
   };
 
   return (
-    <div className={styles.Interview}>
+    <animated.div className={styles.Interview}>
       <div className={styles.interview_container}>
         <div className={styles.interview_left}>
           <div
@@ -187,7 +199,7 @@ const Interview: FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 };
 
