@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import styles from "../styles/pageStyles/Home.module.scss";
+import styles from "./Home.module.scss";
 
 import HomeRightContainer from "../components/Home/HomeRightContainer";
 import { Transition } from "react-transition-group";

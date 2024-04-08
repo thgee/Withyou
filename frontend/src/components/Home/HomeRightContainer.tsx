@@ -1,5 +1,5 @@
-import styles from "../../styles/componentStyles/HomeRightContainer.module.scss";
-import { FC, useContext, useEffect, useState } from "react";
+import styles from "./HomeRightContainer.module.scss";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { HomeRightContainerProps } from "../../types/types";
 import { Transition } from "react-transition-group";
 import { useNavigate } from "react-router-dom";
@@ -22,20 +22,22 @@ const HomeRightContainer: FC<HomeRightContainerProps> = ({
 
   const navigator = useNavigate();
 
+  const inputNameRef = useRef<HTMLInputElement>(null);
+  const inputJobRef = useRef<HTMLInputElement>(null);
+  const [inputNotice, setInputNotice] = useState<boolean>(false);
+
   const handleInterviewStart = () => {
-    switch (selectedMode) {
-      case 0:
-        break;
-      case 1:
-        navigator("/actual");
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      default:
-        break;
+    if (job.length === 0 && inputJobRef.current) {
+      inputJobRef.current.focus();
+      setInputNotice(true);
+      return;
     }
+    if (name.length === 0 && inputNameRef.current) {
+      inputNameRef.current.focus();
+      setInputNotice(true);
+      return;
+    }
+    navigator(`/interview/${selectedMode}`);
   };
 
   return (
@@ -48,27 +50,46 @@ const HomeRightContainer: FC<HomeRightContainerProps> = ({
           <h3>이름과 직무를 입력하세요</h3>
 
           <div className={styles.input_user_info_box}>
-            <h4>이름</h4>
-            <input
-              type="text"
-              placeholder="이름을 입력하세요"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-            <h4>직무</h4>
-            <input
-              type="text"
-              placeholder="직무를 입력하세요"
-              value={job}
-              onChange={(e) => {
-                setJob(e.target.value);
-              }}
-              onKeyDown={(e) => {
-                if (e.key == "Enter") handleInterviewStart();
-              }}
-            />
+            <div className={styles.info_wrapper}>
+              <h4>이름</h4>
+              <input
+                ref={inputNameRef}
+                type="text"
+                placeholder="이름을 입력하세요"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key == "Enter" && inputJobRef.current !== null)
+                    inputJobRef.current.focus();
+                }}
+              />
+              {inputNotice && name.length === 0 && (
+                <div className={styles.notice_text}>이름을 입력해주세요</div>
+              )}
+            </div>
+
+            <div className={styles.info_wrapper}>
+              <h4>직무</h4>
+              <input
+                ref={inputJobRef}
+                type="text"
+                placeholder="직무를 입력하세요"
+                value={job}
+                onChange={(e) => {
+                  setJob(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key == "Enter") handleInterviewStart();
+                }}
+              />
+
+              {inputNotice && job.length === 0 && (
+                <div className={styles.notice_text}>직무를 입력해주세요</div>
+              )}
+            </div>
+
             <button onClick={handleInterviewStart}>면접 시작</button>
           </div>
         </div>

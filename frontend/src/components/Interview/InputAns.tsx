@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { useState, useEffect, useRef, FC } from "react";
-import { InputAnsProps } from "../types/types";
-import styles from "../styles/componentStyles/InputAns.module.scss";
+import { InputAnsProps } from "../../types/types";
+import styles from "./InputAns.module.scss";
 
 const InputAns: FC<InputAnsProps> = ({
   ans,
@@ -17,6 +17,11 @@ const InputAns: FC<InputAnsProps> = ({
   useEffect(() => {
     adjustTextareaHeight();
   }, [ans]);
+
+  useEffect(() => {
+    // 로딩 끝나면 바로 입력 가능하도록 focus 설정
+    textareaRef.current?.focus();
+  }, [isLoading]);
 
   // 처음 textarea의 높이를 저장할 변수
   const fisrtTextareaHeight = useRef<number | undefined>();
@@ -72,10 +77,12 @@ const InputAns: FC<InputAnsProps> = ({
         placeholder="Type your answer"
       />
       {isLoading ? (
-        <img
-          width="34px"
-          src={`${process.env.PUBLIC_URL}/assets/Spinner1.gif`}
-        />
+        <div className={styles.spinner_wrapper}>
+          <img
+            className={styles.spinner}
+            src={`${process.env.PUBLIC_URL}/assets/Spinner1.gif`}
+          />
+        </div>
       ) : (
         <FontAwesomeIcon
           className={styles.submitIcon}

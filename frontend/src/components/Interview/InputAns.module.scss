@@ -1,0 +1,71 @@
+@import "../../App.scss";
+
+.InputAns {
+  border: 1.2px solid $main-color;
+  border-radius: $radius;
+
+  background-color: #ffffff;
+  font-size: 16px;
+  font-family: "Pretendard-Regular";
+
+  line-height: 140%;
+
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 10px 15px #ddd;
+
+  width: 100%;
+  height: auto;
+  padding: 10px;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  margin-bottom: 20px;
+
+  justify-content: space-between;
+
+  .submitIcon {
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+
+  .spinner_wrapper {
+    width: 34px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .spinner {
+      width: 100%;
+    }
+  }
+
+  textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    flex-grow: 1;
+    margin-right: 10px;
+    font-size: 16px;
+    font-family: "Pretendard-Regular";
+
+    &::-webkit-scrollbar {
+      width: 3px; /*스크롤바의 너비*/
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $main-color; /*스크롤바의 색상*/
+      background-clip: padding-box;
+      border-radius: $radius;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #fff; /*스크롤바 트랙 색상*/
+    }
+  }
+}

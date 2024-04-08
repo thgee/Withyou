@@ -1,4 +1,4 @@
-import styles from "../../styles/componentStyles/ModeBox.module.scss";
+import styles from "./ModeBox.module.scss";
 import { FC } from "react";
 import { ModeBoxProps } from "../../types/types";
 
@@ -21,10 +21,15 @@ const ModeBox: FC<ModeBoxProps> = ({
       className={`${styles.ModeBox} ${
         styles[selectedMode === (id as Number) ? "selected" : "not_selected"]
       }`}
+      style={{
+        left: `${50 + (Number(id) - 1) * 28}%`,
+        transform: `translateX(-50%)`,
+        zIndex: id === selectedMode ? 1 : 0,
+      }}
       onClick={handleSelectedMode}
     >
       <h3>{title}</h3>
-      <p>{description}</p>
+      <p className={`${styles.desc}`}>{description}</p>
     </div>
   );
 };
