@@ -18,6 +18,11 @@ const InputAns: FC<InputAnsProps> = ({
     adjustTextareaHeight();
   }, [ans]);
 
+  useEffect(() => {
+    // 로딩 끝나면 바로 입력 가능하도록 focus 설정
+    textareaRef.current?.focus();
+  }, [isLoading]);
+
   // 처음 textarea의 높이를 저장할 변수
   const fisrtTextareaHeight = useRef<number | undefined>();
 
