@@ -26,8 +26,8 @@ const Interview: FC = () => {
   const [isError, setIsError] = useState<boolean>(false); // 토큰초과로 면접 종료될때 변경되는 플래그
   const chatListRef = useRef<HTMLDivElement>(null);
 
-  const abortController = useRef<AbortController | null>(null);
-
+  const abortController = useRef<AbortController | null>(null); // 모드 변경 전 API 호출을 중지시키기 위한 ref
+  const isMount = useRef<boolean>(true); // 첫 마운트인지 아닌지 판단하기 위한 ref, gpt가 첫 마디를 할 때 false로 변경됨
   const navigate = useNavigate();
   useEffect(() => {
     // 스크롤을 항상 가장 아래로 이동
@@ -37,13 +37,11 @@ const Interview: FC = () => {
 
   // 페이지 마운트 시 gpt부터 말하도록 submit 함수를 호출
   useEffect(() => {
-    setTimeout(() => {
-      handleSubmit();
-    }, 2000);
+    isMount.current = true;
+    handleSubmit();
 
+    // 클린업 함수를 이용하여 모드가 바뀌기 전의 API 호출을 중지시킴
     return () => {
-      setIsLoading(false);
-      console.log(isLoading);
       abortController.current?.abort();
     };
   }, [restartToggle.current]);
@@ -52,13 +50,15 @@ const Interview: FC = () => {
   const handleChangeMode = (modeNum: number) => {
     restartToggle.current = !restartToggle.current;
     setMessages([]);
+    setAns("");
     setIsError(false);
     navigate(`/interview/${modeNum}`);
   };
 
   const handleSubmit = async () => {
-    if (isLoading || isError) return;
+    if (!isMount.current && (isLoading || isError)) return;
     setIsLoading(true);
+    isMount.current = false;
 
     setAns("");
     const updatedMessages = [
