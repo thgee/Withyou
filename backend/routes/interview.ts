@@ -11,7 +11,7 @@ router.post("/:mode", async function (req: any, res: any) {
     // GPT 호출
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo-0125",
-      temperature: mode !== 0 ? 0.5 : 1,
+      temperature: mode !== 0 ? 0.5 : 1, // 연습모드는 다양한 질문을 하도록 1로 설정
       max_tokens: 2000, // max token : 4097
       messages: prompt,
     });

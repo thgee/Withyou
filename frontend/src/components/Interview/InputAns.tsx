@@ -72,10 +72,12 @@ const InputAns: FC<InputAnsProps> = ({
         placeholder="Type your answer"
       />
       {isLoading ? (
-        <img
-          width="34px"
-          src={`${process.env.PUBLIC_URL}/assets/Spinner1.gif`}
-        />
+        <div className={styles.spinner_wrapper}>
+          <img
+            className={styles.spinner}
+            src={`${process.env.PUBLIC_URL}/assets/Spinner1.gif`}
+          />
+        </div>
       ) : (
         <FontAwesomeIcon
           className={styles.submitIcon}
