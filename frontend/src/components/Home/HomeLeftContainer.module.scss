@@ -34,3 +34,23 @@
     position: relative;
   }
 }
+
+// mobile
+@media (max-width: 768px) {
+  .Home {
+    display: block;
+  }
+  .HomeLeftContainer {
+    width: 100%;
+
+    .title_section {
+      margin: 50px auto;
+    }
+
+    .select_mode_section {
+      margin-top: 0px;
+      height: 200px;
+      width: 500px;
+    }
+  }
+}

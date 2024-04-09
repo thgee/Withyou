@@ -27,3 +27,18 @@
     clear: both;
   }
 }
+
+// mobile
+@media (max-width: 768px) {
+  .Home {
+    min-height: fit-content;
+    padding: 0;
+    height: 100%;
+    .home_wrapper {
+      min-width: 500px;
+      width: 100%;
+      flex-direction: column;
+      height: fit-content;
+    }
+  }
+}

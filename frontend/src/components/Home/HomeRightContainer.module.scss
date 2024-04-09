@@ -93,3 +93,41 @@
     }
   }
 }
+
+// mobile
+@media (max-width: 768px) {
+  .HomeRightContainer {
+    transform: translateY(-100%);
+    opacity: 1;
+    width: 100%;
+    align-items: start;
+    flex-direction: column;
+
+    &.entering {
+      transform: translateY(-5%);
+      opacity: 0.8;
+      opacity: 1;
+    }
+
+    &.entered {
+      transform: translateY(-5%);
+      opacity: 1;
+    }
+
+    &.exiting {
+      transform: translateY(-100%);
+      opacity: 0;
+      opacity: 1;
+    }
+
+    // 이름과 직무 입력하세요
+    h3 {
+      margin-top: 20%;
+      font-family: "Pretendard-Bold";
+    }
+
+    .input_user_info_box {
+      padding-top: 0;
+    }
+  }
+}

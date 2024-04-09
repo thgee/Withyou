@@ -39,3 +39,20 @@
     text-align: center;
   }
 }
+
+// mobile
+@media (max-width: 768px) {
+  .ModeBox {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    h3 {
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+
+    .desc {
+      font-size: 0.8rem;
+    }
+  }
+}
