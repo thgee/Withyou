@@ -215,11 +215,6 @@ const Interview: FC = () => {
               isLoading={isLoading}
               isError={isError}
             />
-
-            {/* 계속 진행 버튼 필요 시 주석해제 */}
-            {/* <button className={styles.continue_btn} onClick={handleSubmit}>
-            계속 진행
-          </button> */}
           </div>
         </div>
       </div>
