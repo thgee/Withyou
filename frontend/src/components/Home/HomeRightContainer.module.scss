@@ -101,8 +101,7 @@
     opacity: 1;
     width: 100%;
     align-items: start;
-    flex-direction: column;
-
+    padding-left: 10px;
     &.entering {
       transform: translateY(-5%);
       opacity: 0.8;

@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { interviewModes, mobileQuery } from "../constants/constants";
 import { useSpring, animated } from "@react-spring/web";
 import { useMediaQuery } from "react-responsive";
+import { GiHamburgerMenu } from "react-icons/gi";
 import Navbar from "../components/Interview/Navbar";
 
 // Interview 컴포넌트 등장 애니메이션
@@ -41,6 +42,7 @@ const Interview: FC = () => {
   const abortController = useRef<AbortController | null>(null); // 모드 변경 전 API 호출을 중지시키기 위한 ref
   const isMount = useRef<boolean>(true); // 첫 마운트인지 아닌지 판단하기 위한 ref, gpt가 첫 마디를 할 때 false로 변경됨
   const navigate = useNavigate();
+  const [navbarToggle, setNavbarToggle] = useState<boolean>(false);
 
   const isMobile = useMediaQuery({
     query: mobileQuery,
@@ -65,6 +67,9 @@ const Interview: FC = () => {
 
     // 모드 변경 시 발동하는 효과
     api.start(interviewAnimation);
+
+    // Navbar 닫아줌
+    setNavbarToggle(false);
 
     // 클린업 함수를 이용하여 모드가 바뀌기 전의 API 호출을 중지시킴
     return () => {
@@ -134,21 +139,25 @@ const Interview: FC = () => {
     <animated.div style={springs} className={styles.Interview}>
       <div className={styles.interview_container}>
         <div className={styles.interview_left}>
-          <div
-            onClick={() => {
-              navigate("/");
-            }}
-            className={styles.title}
-          >
+          <div className={styles.title}>
+            {isMobile && (
+              <GiHamburgerMenu
+                className={styles.hamburgerIcon}
+                onClick={() => setNavbarToggle(!navbarToggle)}
+              />
+            )}
             <img
               src={`${process.env.PUBLIC_URL}/assets/logo.png`}
-              width={"50px"}
+              width={isMobile ? "35px" : "50px"}
             />
             <h2>{interviewModes[Number(selectedMode)].title}</h2>
           </div>
+
           <Navbar
+            navbarToggle={navbarToggle}
             selectedMode={Number(selectedMode)}
             handleChangeMode={handleChangeMode}
+            setNavbarToggle={setNavbarToggle}
           />
         </div>
         <div className={styles.interview_right}>

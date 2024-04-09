@@ -6,13 +6,38 @@ import { FaBookOpen } from "react-icons/fa";
 import { AiFillWechat } from "react-icons/ai";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoHomeSharp } from "react-icons/io5";
+import { FaXmark } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import { mobileQuery } from "../../constants/constants";
 
-const Navbar: FC<NavbarProps> = ({ selectedMode, handleChangeMode }) => {
+const Navbar: FC<NavbarProps> = ({
+  selectedMode,
+  handleChangeMode,
+  navbarToggle,
+  setNavbarToggle,
+}) => {
   const navigate = useNavigate();
 
+  const isMobile = useMediaQuery({
+    query: mobileQuery,
+  });
+
   return (
-    <div className={styles.Navbar}>
+    <div
+      className={`${styles.Navbar} ${
+        navbarToggle ? styles.appear : styles.disappear
+      }`}
+    >
+      {isMobile && (
+        <FaXmark
+          color="#aaa"
+          className={styles.cancel}
+          onClick={() => {
+            setNavbarToggle(!navbarToggle);
+          }}
+        />
+      )}
       <div className={styles.mode_wrapper}>
         <div className={styles.mode_title}>MODE</div>
         <ul>
