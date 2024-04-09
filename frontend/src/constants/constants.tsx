@@ -14,9 +14,8 @@ export const interviewModes: {
   {
     key: 1,
     title: "실전면접",
-    description: `4가지 질문으로 진행되고
-전체적인 피드백을
-받는 면접`,
+    description: `4가지 질문으로 실전처럼
+진행되는 면접`,
   },
   {
     key: 2,

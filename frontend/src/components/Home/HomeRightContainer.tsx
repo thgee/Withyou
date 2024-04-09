@@ -27,16 +27,17 @@ const HomeRightContainer: FC<HomeRightContainerProps> = ({
   const [inputNotice, setInputNotice] = useState<boolean>(false);
 
   const handleInterviewStart = () => {
-    if (job.length === 0 && inputJobRef.current) {
-      inputJobRef.current.focus();
-      setInputNotice(true);
-      return;
-    }
     if (name.length === 0 && inputNameRef.current) {
       inputNameRef.current.focus();
       setInputNotice(true);
       return;
     }
+    if (job.length === 0 && inputJobRef.current) {
+      inputJobRef.current.focus();
+      setInputNotice(true);
+      return;
+    }
+
     navigator(`/interview/${selectedMode}`);
   };
 

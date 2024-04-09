@@ -12,6 +12,21 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoHomeSharp } from "react-icons/io5";
 import { useNavigate, useParams } from "react-router-dom";
 import { interviewModes } from "../constants/constants";
+import { useSpring, animated } from "@react-spring/web";
+
+// Interview 컴포넌트 등장 애니메이션
+const interviewAnimation = {
+  from: {
+    width: "0%",
+    opacity: "0%",
+    transform: "rotate(270deg) scale(0)",
+  },
+  to: {
+    width: "100%",
+    opacity: "100%",
+    transform: "rotate(360deg) scale(1)",
+  },
+};
 
 const Interview: FC = () => {
   const { selectedMode } = useParams();
@@ -25,30 +40,49 @@ const Interview: FC = () => {
   const [isError, setIsError] = useState<boolean>(false); // 토큰초과로 면접 종료될때 변경되는 플래그
   const chatListRef = useRef<HTMLDivElement>(null);
 
+  const abortController = useRef<AbortController | null>(null); // 모드 변경 전 API 호출을 중지시키기 위한 ref
+  const isMount = useRef<boolean>(true); // 첫 마운트인지 아닌지 판단하기 위한 ref, gpt가 첫 마디를 할 때 false로 변경됨
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 스크롤을 항상 가장 아래로 이동
+    // 면접내역 스크롤을 항상 가장 아래로 이동
     if (chatListRef.current !== null)
       chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
   }, [messages]);
 
-  // 페이지 마운트 시 gpt부터 말하도록 submit 함수를 호출
+  // animated.div 컴포넌트 마운트 시 발동하는 효과
+  const [springs, api] = useSpring(() => interviewAnimation);
+
   useEffect(() => {
+    // 모드가 바뀌는 것은 pathvariable에 의해 페이지 이동을 하므로 컴포넌트가 리마운트 되지 않는다.
+    // 따라서 마운트 플래그를 따로 선언해준다.
+    isMount.current = true;
+
+    // 페이지 마운트 시 gpt부터 말하도록 submit 함수를 호출
     handleSubmit();
+
+    // 모드 변경 시 발동하는 효과
+    api.start(interviewAnimation);
+
+    // 클린업 함수를 이용하여 모드가 바뀌기 전의 API 호출을 중지시킴
+    return () => {
+      abortController.current?.abort();
+    };
   }, [restartToggle.current]);
 
   // 모드 변경 시 대화내역 초기화 후 페이지 이동하는 함수
   const handleChangeMode = (modeNum: number) => {
     restartToggle.current = !restartToggle.current;
     setMessages([]);
+    setAns("");
     setIsError(false);
     navigate(`/interview/${modeNum}`);
   };
 
   const handleSubmit = async () => {
-    if (isLoading || isError) return;
+    if (!isMount.current && (isLoading || isError)) return;
     setIsLoading(true);
+    isMount.current = false;
 
     setAns("");
     const updatedMessages = [
@@ -57,6 +91,7 @@ const Interview: FC = () => {
     ];
     setMessages(updatedMessages);
 
+    abortController.current = new AbortController();
     const response = await fetch(
       `http://localhost:8080/interview/${selectedMode}`,
       {
@@ -69,6 +104,7 @@ const Interview: FC = () => {
           job: job,
           messages: updatedMessages,
         }),
+        signal: abortController.current?.signal,
       }
     );
 
@@ -93,7 +129,7 @@ const Interview: FC = () => {
   };
 
   return (
-    <div className={styles.Interview}>
+    <animated.div style={springs} className={styles.Interview}>
       <div className={styles.interview_container}>
         <div className={styles.interview_left}>
           <div
@@ -187,7 +223,7 @@ const Interview: FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 };
 
