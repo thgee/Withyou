@@ -24,3 +24,5 @@ export const interviewModes: {
 경우를 대비한 면접`,
   },
 ];
+
+export const mobileQuery = "(max-width:768px)";

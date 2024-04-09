@@ -5,14 +5,13 @@ import styles from "./Interview.module.scss";
 import { FC } from "react";
 import { nameJobContext } from "../App";
 import { NameJobContext } from "../types/types";
-import { FaMountainSun } from "react-icons/fa6";
-import { FaBookOpen } from "react-icons/fa";
-import { AiFillWechat } from "react-icons/ai";
-import { VscDebugRestart } from "react-icons/vsc";
-import { IoHomeSharp } from "react-icons/io5";
+
 import { useNavigate, useParams } from "react-router-dom";
-import { interviewModes } from "../constants/constants";
+import { interviewModes, mobileQuery } from "../constants/constants";
 import { useSpring, animated } from "@react-spring/web";
+import { useMediaQuery } from "react-responsive";
+import { GiHamburgerMenu } from "react-icons/gi";
+import Navbar from "../components/Interview/Navbar";
 
 // Interview 컴포넌트 등장 애니메이션
 const interviewAnimation = {
@@ -43,6 +42,11 @@ const Interview: FC = () => {
   const abortController = useRef<AbortController | null>(null); // 모드 변경 전 API 호출을 중지시키기 위한 ref
   const isMount = useRef<boolean>(true); // 첫 마운트인지 아닌지 판단하기 위한 ref, gpt가 첫 마디를 할 때 false로 변경됨
   const navigate = useNavigate();
+  const [navbarToggle, setNavbarToggle] = useState<boolean>(false);
+
+  const isMobile = useMediaQuery({
+    query: mobileQuery,
+  });
 
   useEffect(() => {
     // 면접내역 스크롤을 항상 가장 아래로 이동
@@ -64,6 +68,9 @@ const Interview: FC = () => {
     // 모드 변경 시 발동하는 효과
     api.start(interviewAnimation);
 
+    // Navbar 닫아줌
+    setNavbarToggle(false);
+
     // 클린업 함수를 이용하여 모드가 바뀌기 전의 API 호출을 중지시킴
     return () => {
       abortController.current?.abort();
@@ -71,7 +78,7 @@ const Interview: FC = () => {
   }, [restartToggle.current]);
 
   // 모드 변경 시 대화내역 초기화 후 페이지 이동하는 함수
-  const handleChangeMode = (modeNum: number) => {
+  const handleChangeMode = (modeNum: Number) => {
     restartToggle.current = !restartToggle.current;
     setMessages([]);
     setAns("");
@@ -132,63 +139,26 @@ const Interview: FC = () => {
     <animated.div style={springs} className={styles.Interview}>
       <div className={styles.interview_container}>
         <div className={styles.interview_left}>
-          <div
-            onClick={() => {
-              navigate("/");
-            }}
-            className={styles.title}
-          >
+          <div className={styles.title}>
+            {isMobile && (
+              <GiHamburgerMenu
+                className={styles.hamburgerIcon}
+                onClick={() => setNavbarToggle(!navbarToggle)}
+              />
+            )}
             <img
               src={`${process.env.PUBLIC_URL}/assets/logo.png`}
-              width={"50px"}
+              width={isMobile ? "35px" : "50px"}
             />
             <h2>{interviewModes[Number(selectedMode)].title}</h2>
           </div>
-          <div className={styles.mode_wrapper}>
-            <div className={styles.mode_title}>MODE</div>
-            <ul>
-              <li
-                className={
-                  Number(selectedMode) === 0 ? styles.selected : "none"
-                }
-                onClick={() => handleChangeMode(0)}
-              >
-                <FaBookOpen color="999" />
-                <span>연습면접</span>
-              </li>
-              <li
-                className={
-                  Number(selectedMode) === 1 ? styles.selected : "none"
-                }
-                onClick={() => handleChangeMode(1)}
-              >
-                <AiFillWechat color="999" />
-                <span>실전면접</span>
-              </li>
-              <li
-                className={
-                  Number(selectedMode) === 2 ? styles.selected : "none"
-                }
-                onClick={() => handleChangeMode(2)}
-              >
-                <FaMountainSun color="999" />
-                <span>하드면접</span>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.extra_wrapper}>
-            <div className={styles.mode_title}>EXTRA</div>
-            <ul>
-              <li onClick={() => handleChangeMode(Number(selectedMode))}>
-                <VscDebugRestart color="999" />
-                <span>면접 재시작</span>
-              </li>
-              <li onClick={() => navigate(`/`)}>
-                <IoHomeSharp color="999" />
-                <span>처음 화면</span>
-              </li>
-            </ul>
-          </div>
+
+          <Navbar
+            navbarToggle={navbarToggle}
+            selectedMode={Number(selectedMode)}
+            handleChangeMode={handleChangeMode}
+            setNavbarToggle={setNavbarToggle}
+          />
         </div>
         <div className={styles.interview_right}>
           <div className={styles.interview_right_wrapper}>
@@ -215,11 +185,6 @@ const Interview: FC = () => {
               isLoading={isLoading}
               isError={isError}
             />
-
-            {/* 계속 진행 버튼 필요 시 주석해제 */}
-            {/* <button className={styles.continue_btn} onClick={handleSubmit}>
-            계속 진행
-          </button> */}
           </div>
         </div>
       </div>

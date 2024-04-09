@@ -1,0 +1,110 @@
+@import "../../App.scss";
+
+.Navbar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  .mode_wrapper {
+    flex-grow: 0.6;
+  }
+
+  .extra_wrapper {
+    flex-basis: 15%;
+    margin-bottom: 50px;
+  }
+
+  .mode_wrapper,
+  .extra_wrapper {
+    margin-left: 12px;
+
+    .mode_title {
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+    ul {
+      list-style: none;
+      li {
+        display: flex;
+        align-items: center;
+        margin: 14px 5px;
+
+        // 아이콘
+        > *:first-child {
+          font-size: 14px;
+          margin-right: 18px;
+        }
+        span {
+          font-size: 0.9rem;
+          color: #444;
+          font-family: "Pretendard-Bold";
+        }
+
+        cursor: pointer;
+
+        &:hover {
+          * {
+            color: $main-color;
+            transition: all 0.1s;
+          }
+        }
+
+        // 선택된 모드 색 변경
+        &.selected {
+          * {
+            color: $main-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .Navbar {
+    width: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    border: 0.5px solid $main-color;
+    background-color: $light-color;
+    position: absolute;
+    z-index: 3;
+    height: 400px;
+    top: 20%;
+    left: 20px;
+    transition: all 0.3s;
+
+    &.disappear {
+      opacity: 0;
+      transform: translateX(-120%);
+    }
+
+    &.appear {
+      opacity: 100;
+      transform: translateX(0%);
+      box-shadow: 0px 0px 1000px 4000px rgba(0, 0, 0, 0.5);
+    }
+
+    .cancel {
+      position: absolute;
+      right: 10px;
+      top: 14px;
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
+
+    .mode_wrapper {
+      margin: 0;
+    }
+    .extra_wrapper {
+      margin-left: 0;
+    }
+
+    .mode_wrapper ul,
+    .extra_wrapper ul {
+      margin-left: 8px;
+    }
+  }
+}
