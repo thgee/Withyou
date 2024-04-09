@@ -1,0 +1,63 @@
+@import "../../App.scss";
+
+.Navbar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  .mode_wrapper {
+    flex-grow: 0.6;
+  }
+
+  .extra_wrapper {
+    flex-basis: 15%;
+    margin-bottom: 50px;
+  }
+
+  .mode_wrapper,
+  .extra_wrapper {
+    margin-left: 12px;
+
+    .mode_title {
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+    ul {
+      list-style: none;
+      li {
+        display: flex;
+        align-items: center;
+        margin: 14px 5px;
+
+        // 아이콘
+        > *:first-child {
+          font-size: 14px;
+          margin-right: 18px;
+        }
+        span {
+          font-size: 0.9rem;
+          color: #444;
+          font-family: "Pretendard-Bold";
+        }
+
+        cursor: pointer;
+
+        &:hover {
+          * {
+            color: $main-color;
+            transition: all 0.1s;
+          }
+        }
+
+        // 선택된 모드 색 변경
+        &.selected {
+          * {
+            color: $main-color;
+          }
+        }
+      }
+    }
+  }
+}

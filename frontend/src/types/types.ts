@@ -39,3 +39,8 @@ export interface NameJobContext {
   job: string;
   setJob: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface NavbarProps {
+  selectedMode: Number;
+  handleChangeMode: (modeNum: Number) => void;
+}

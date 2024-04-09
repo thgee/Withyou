@@ -5,14 +5,12 @@ import styles from "./Interview.module.scss";
 import { FC } from "react";
 import { nameJobContext } from "../App";
 import { NameJobContext } from "../types/types";
-import { FaMountainSun } from "react-icons/fa6";
-import { FaBookOpen } from "react-icons/fa";
-import { AiFillWechat } from "react-icons/ai";
-import { VscDebugRestart } from "react-icons/vsc";
-import { IoHomeSharp } from "react-icons/io5";
+
 import { useNavigate, useParams } from "react-router-dom";
-import { interviewModes } from "../constants/constants";
+import { interviewModes, mobileQuery } from "../constants/constants";
 import { useSpring, animated } from "@react-spring/web";
+import { useMediaQuery } from "react-responsive";
+import Navbar from "../components/Interview/Navbar";
 
 // Interview 컴포넌트 등장 애니메이션
 const interviewAnimation = {
@@ -44,6 +42,10 @@ const Interview: FC = () => {
   const isMount = useRef<boolean>(true); // 첫 마운트인지 아닌지 판단하기 위한 ref, gpt가 첫 마디를 할 때 false로 변경됨
   const navigate = useNavigate();
 
+  const isMobile = useMediaQuery({
+    query: mobileQuery,
+  });
+
   useEffect(() => {
     // 면접내역 스크롤을 항상 가장 아래로 이동
     if (chatListRef.current !== null)
@@ -71,7 +73,7 @@ const Interview: FC = () => {
   }, [restartToggle.current]);
 
   // 모드 변경 시 대화내역 초기화 후 페이지 이동하는 함수
-  const handleChangeMode = (modeNum: number) => {
+  const handleChangeMode = (modeNum: Number) => {
     restartToggle.current = !restartToggle.current;
     setMessages([]);
     setAns("");
@@ -144,51 +146,10 @@ const Interview: FC = () => {
             />
             <h2>{interviewModes[Number(selectedMode)].title}</h2>
           </div>
-          <div className={styles.mode_wrapper}>
-            <div className={styles.mode_title}>MODE</div>
-            <ul>
-              <li
-                className={
-                  Number(selectedMode) === 0 ? styles.selected : "none"
-                }
-                onClick={() => handleChangeMode(0)}
-              >
-                <FaBookOpen color="999" />
-                <span>연습면접</span>
-              </li>
-              <li
-                className={
-                  Number(selectedMode) === 1 ? styles.selected : "none"
-                }
-                onClick={() => handleChangeMode(1)}
-              >
-                <AiFillWechat color="999" />
-                <span>실전면접</span>
-              </li>
-              <li
-                className={
-                  Number(selectedMode) === 2 ? styles.selected : "none"
-                }
-                onClick={() => handleChangeMode(2)}
-              >
-                <FaMountainSun color="999" />
-                <span>하드면접</span>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.extra_wrapper}>
-            <div className={styles.mode_title}>EXTRA</div>
-            <ul>
-              <li onClick={() => handleChangeMode(Number(selectedMode))}>
-                <VscDebugRestart color="999" />
-                <span>면접 재시작</span>
-              </li>
-              <li onClick={() => navigate(`/`)}>
-                <IoHomeSharp color="999" />
-                <span>처음 화면</span>
-              </li>
-            </ul>
-          </div>
+          <Navbar
+            selectedMode={Number(selectedMode)}
+            handleChangeMode={handleChangeMode}
+          />
         </div>
         <div className={styles.interview_right}>
           <div className={styles.interview_right_wrapper}>
