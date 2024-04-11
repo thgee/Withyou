@@ -8,6 +8,7 @@ router.post("/:mode", async function (req: any, res: any) {
   let prompt = [...initPrompt(name, job, mode)]; // 초기프롬프트와 대화내역을 프롬프트에 넣어줌
   if (mode !== 0) prompt.push(...messages); // 연습모드는 대화내역 안 넣어줌
   try {
+    console.log(messages);
     // GPT 호출
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo-0125",
