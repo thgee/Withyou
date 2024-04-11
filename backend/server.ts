@@ -23,7 +23,7 @@ app.use((req: CustomRequest, res: Response, next: NextFunction) => {
 });
 
 // 서버실행
-app.listen(8080, () => {
+app.listen(3002, () => {
   console.log("==================== 서버실행 ==================");
 });
 
