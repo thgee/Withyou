@@ -12,6 +12,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { useMediaQuery } from "react-responsive";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Navbar from "../components/Interview/Navbar";
+import InterviewFlowAPI from "../utils/InterviewFlowAPI";
 
 // Interview 컴포넌트 등장 애니메이션
 const interviewAnimation = {
@@ -99,22 +100,13 @@ const Interview: FC = () => {
     setMessages(updatedMessages);
 
     abortController.current = new AbortController();
-    const response = await fetch(
-      `http://localhost:8080/interview/${selectedMode}`,
-      {
-        method: `POST`,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          job: job,
-          messages: updatedMessages,
-        }),
-        signal: abortController.current?.signal,
-      }
+    const response = await InterviewFlowAPI(
+      updatedMessages,
+      name,
+      job,
+      selectedMode,
+      abortController
     );
-
     const data = await response.json();
 
     if (response.status === 400) {
