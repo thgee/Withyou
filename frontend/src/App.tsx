@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import React, { createContext, useState } from "react";
 import "./App.scss";
 import Interview from "./pages/Interview";
@@ -15,12 +15,12 @@ function App() {
 
   return (
     <nameJobContext.Provider value={{ name, setName, job, setJob }}>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/interview/:selectedMode" element={<Interview />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </nameJobContext.Provider>
   );
 }
