@@ -10,10 +10,6 @@ require("dotenv").config(); // 환경변수 설정
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-// cors 설정
-let cors = require(`cors`);
-app.use(cors());
-
 // OpenAI 연결
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
