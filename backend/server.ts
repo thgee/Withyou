@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { CustomRequest } from "./types";
+import path from "path";
 
 const express = require("express");
 const app = express();
@@ -28,6 +29,12 @@ app.use((req: CustomRequest, res: Response, next: NextFunction) => {
 // 서버실행
 app.listen(8080, () => {
   console.log("==================== 서버실행 ==================");
+});
+
+// 리액트 파일 배포
+app.use(express.static(path.join(__dirname, "./build")));
+app.get("/", function (req: Request, res: Response) {
+  res.sendFile(path.join(__dirname, "./build/index.html"));
 });
 
 // 라우팅
