@@ -213,7 +213,10 @@ withyou
 
 <br>
 
-## 🌴 트러블 슈팅
+## 🌴 개발일지 및 트러블 슈팅
 
-- 추가 예정
+* [개발일지 및 트러블 슈팅 모음](https://thgee.notion.site/7ee9fefd33a445b6af5eef8341bf48cb?pvs=4)
+
+
+
 <br>
