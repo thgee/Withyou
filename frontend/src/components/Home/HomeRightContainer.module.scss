@@ -100,8 +100,9 @@
     transform: translateY(-100%);
     opacity: 1;
     width: 100%;
-    align-items: start;
+    align-items: center;
     padding-left: 10px;
+
     &.entering {
       transform: translateY(-5%);
       opacity: 0.8;
@@ -122,7 +123,9 @@
     // 이름과 직무 입력하세요
     h3 {
       margin-top: 20%;
+      margin-left: 0;
       font-family: "Pretendard-Bold";
+      transform: translateX(-50px);
     }
 
     .input_user_info_box {
