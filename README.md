@@ -150,13 +150,10 @@ withyou
 - 모드를 선택하면 이름, 직무 입력란이 나타납니다.
 - 컴포넌트가 PC환경에서는 좌우로, Mobile환경에서는 위아래로 펼쳐지는 애니메이션을 구현하였습니다.
 
-| 홈 화면 - PC                                                                                           |
-| ------------------------------------------------------------------------------------------------------ |
-| <img src = "https://github.com/thgee/Withyou/assets/102576089/17ea2a96-62b8-4671-b19e-95c025ad9602" /> |
+| 홈 화면 - PC|홈 화면 - Mobile|
+| -------------|-----------------|
+| <img src = "https://github.com/thgee/Withyou/assets/102576089/17ea2a96-62b8-4671-b19e-95c025ad9602" height = "400px" width = "auto"/> | <img src = "https://github.com/thgee/Withyou/assets/102576089/386a13e6-5616-453b-a9e0-f88730e0c43a" height = "400px"/> |
 
-| 홈 화면 - Mobile |
-| ---------------- |
-| <img src = "" /> |
 
 <br>
 
@@ -166,13 +163,12 @@ withyou
 - 면접 중간에 모드를 변경해도 이름과 직무가 유지되도록 구현하였습니다.
 - 면접화면 마운트 시 애니메이션을 구현하였습니다.
 
-| 면접화면 - PC                                                                                         |
-| ----------------------------------------------------------------------------------------------------- |
-| <img src = "https://github.com/thgee/Withyou/assets/102576089/089d53dd-25b8-4d95-93ae-1830b4ceb54f"/> |
+| 면접화면 - PC|면접 화면 - Mobile|
+| -------------|-----------------|
+| <img src = "https://github.com/thgee/Withyou/assets/102576089/089d53dd-25b8-4d95-93ae-1830b4ceb54f" height = "400px" width = "auto"/> | <img src = "https://github.com/thgee/Withyou/assets/102576089/7c0df8a2-71bf-47dc-820e-6114d9a366e0" height = "400px"/> |
 
-| 면접 화면 - Mobile                                                                                     |
-| ------------------------------------------------------------------------------------------------------ |
-| <img src = "https://github.com/thgee/Withyou/assets/102576089/7c0df8a2-71bf-47dc-820e-6114d9a366e0" /> |
+
+
 
 #### 1. 연습면접
 
@@ -199,4 +195,5 @@ withyou
 
 ## 트러블 슈팅
 
+- 추가 예정
 <br>
