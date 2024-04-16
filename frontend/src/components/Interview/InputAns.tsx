@@ -3,6 +3,8 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { useState, useEffect, useRef, FC } from "react";
 import { InputAnsProps } from "../../types/types";
 import styles from "./InputAns.module.scss";
+import { useMediaQuery } from "react-responsive";
+import { mobileQuery } from "../../constants/constants";
 
 const InputAns: FC<InputAnsProps> = ({
   ans,
@@ -14,13 +16,17 @@ const InputAns: FC<InputAnsProps> = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textareaHeight, setTextareaHeight] = useState("auto");
 
+  const isMobile = useMediaQuery({
+    query: mobileQuery,
+  });
+
   useEffect(() => {
     adjustTextareaHeight();
   }, [ans]);
 
   useEffect(() => {
-    // 로딩 끝나면 바로 입력 가능하도록 focus 설정
-    textareaRef.current?.focus();
+    // 로딩 끝나면 바로 입력 가능하도록 focus 설정 (PC환경 일때만)
+    if (!isMobile) textareaRef.current?.focus();
   }, [isLoading]);
 
   // 처음 textarea의 높이를 저장할 변수
