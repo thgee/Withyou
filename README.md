@@ -39,7 +39,7 @@
 
 | 홈 화면 - PC|홈 화면 - Mobile|
 | -------------|-----------------|
-| <img src = "https://github.com/thgee/Withyou/assets/102576089/17ea2a96-62b8-4671-b19e-95c025ad9602" height = "400px" width = "auto"/> | <img src = "https://github.com/thgee/Withyou/assets/102576089/386a13e6-5616-453b-a9e0-f88730e0c43a" height = "400px"/> |
+| <img src = "https://github.com/thgee/Withyou/assets/102576089/17ea2a96-62b8-4671-b19e-95c025ad9602" width = "650px"/> | <img src = "https://github.com/thgee/Withyou/assets/102576089/386a13e6-5616-453b-a9e0-f88730e0c43a" width = "250px"/> |
 
 
 <br>
@@ -52,7 +52,7 @@
 
 | 면접화면 - PC|면접 화면 - Mobile|
 | -------------|-----------------|
-| <img src = "https://github.com/thgee/Withyou/assets/102576089/089d53dd-25b8-4d95-93ae-1830b4ceb54f" height = "400px" width = "auto"/> | <img src = "https://github.com/thgee/Withyou/assets/102576089/7c0df8a2-71bf-47dc-820e-6114d9a366e0" height = "400px"/> |
+| <img src = "https://github.com/thgee/Withyou/assets/102576089/089d53dd-25b8-4d95-93ae-1830b4ceb54f"  width = "650px"/> | <img src = "https://github.com/thgee/Withyou/assets/102576089/7c0df8a2-71bf-47dc-820e-6114d9a366e0"  width = "250px"/> |
 
 
 <br>
