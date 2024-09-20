@@ -1,6 +1,7 @@
 # 🤵🏻 위듀 - AI 면접 서비스
 
 - 배포 URL : https://port-0-withyou-2aat2cluv583d7.sel5.cloudtype.app
+- 1인 개발 프로젝트
 
 <br>
 
