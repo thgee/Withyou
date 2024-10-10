@@ -89,42 +89,6 @@
 | ------------------------------------------------------------------------------------------------------ |
 | <img src = "https://github.com/thgee/Withyou/assets/102576089/eebad0a1-708c-4591-9a1e-15e7321e1231" /> |
 
-<br>
-
-## 🌴 세부 기술스택과 채택한 이유
-
-### Typescript
-
-- 버그그 방지를 위해 사용하였습니다.
-- 사실 JS만으로도 충분히 구현할 수 있는 작은 프로젝트였지만 TS에 조금이나마 익숙해지기 위해서 도입하였습니다.
-
-### SCSS
-
-- Nesting을 이용하여 선택자 표기를 간단히 하는 것을 주 목적으로 사용하였습니다.
-
-### CSS-Module
-
-- ClassName 중복으로 인한 버그를 피하기 위해서 사용하였습니다.
-- 컴포넌트별 CSS 파일이 분리되어 있어 전역 CSS를 사용할 때 보다 유지보수에 용이합니다.
-
-### react-spring
-
-- 애니메이션 실행 시 컴포넌트가 리렌더링 되지 않는다는 장점을 이용해 애니메이션 성능을 향상시키기 위해 사용하였습니다.
-
-### react-transition-group
-
-- 컴포넌트 마운트, 언마운트 시에 애니메이션을 구현하기 위해 사용하였습니다.
-
-### react-responsive
-
-- 컴포넌트 내에서 해당 뷰포트가 PC환경인지 모바일환경인지 판단하기 위해 사용하였습니다.
-
-<br>
-
-## 🌴 개발 진행 방식
-
-- [GitHub Milestone](https://github.com/thgee/Withyou/milestones?state=closed) 에 개발에 필요한 큰 틀을 작성하였습니다.
-- [GitHub Issues](https://github.com/thgee/Withyou/issues?q=is%3Aissue+is%3Aclosed)를 통해 작은 구현목표를 정하고, 개발중 발생한 문제들과 진행사항을 comment에 기록하였습니다.
 
 <br>
 
@@ -210,6 +174,46 @@ withyou
         └─utils
                 InterviewFlowAPI.tsx
 ```
+
+
+<br>
+
+## 🌴 개발 진행 방식
+
+- [GitHub Milestone](https://github.com/thgee/Withyou/milestones?state=closed) 에 개발에 필요한 큰 틀을 작성하였습니다.
+- [GitHub Issues](https://github.com/thgee/Withyou/issues?q=is%3Aissue+is%3Aclosed)를 통해 작은 구현목표를 정하고, 개발중 발생한 문제들과 진행사항을 comment에 기록하였습니다.
+
+
+<br>
+
+## 🌴 세부 기술스택과 채택한 이유
+
+### Typescript
+
+- 버그그 방지를 위해 사용하였습니다.
+- 사실 JS만으로도 충분히 구현할 수 있는 작은 프로젝트였지만 TS에 조금이나마 익숙해지기 위해서 도입하였습니다.
+
+### SCSS
+
+- Nesting을 이용하여 선택자 표기를 간단히 하는 것을 주 목적으로 사용하였습니다.
+
+### CSS-Module
+
+- ClassName 중복으로 인한 버그를 피하기 위해서 사용하였습니다.
+- 컴포넌트별 CSS 파일이 분리되어 있어 전역 CSS를 사용할 때 보다 유지보수에 용이합니다.
+
+### react-spring
+
+- 애니메이션 실행 시 컴포넌트가 리렌더링 되지 않는다는 장점을 이용해 애니메이션 성능을 향상시키기 위해 사용하였습니다.
+
+### react-transition-group
+
+- 컴포넌트 마운트, 언마운트 시에 애니메이션을 구현하기 위해 사용하였습니다.
+
+### react-responsive
+
+- 컴포넌트 내에서 해당 뷰포트가 PC환경인지 모바일환경인지 판단하기 위해 사용하였습니다.
+
 
 <br>
 
