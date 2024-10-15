@@ -5,6 +5,8 @@
 
 <br>
 
+<br>
+
 ## 🌴 프로젝트 소개
 
 - 위듀는 면접을 앞둔 사용자들을 위한 면접 시뮬레이션 서비스 입니다.
@@ -13,7 +15,10 @@
 
 <br>
 
-## 🌴 개발 환경
+<br>
+
+
+## 🛠️ 개발 환경
 
 - Front-end : React, Typescript
 - Back-end : Express
@@ -21,16 +26,14 @@
 - 버전 및 이슈관리 : Github, Github Issues
 - 서비스 배포 환경 : Cloudtype
 
-  <br>
+
+<br>
+
+<br>
 
 
 
-
-
-
-
-
-## 🌴 페이지별 기능
+## 📖 페이지별 기능
 
 ### [홈 화면]
 
@@ -91,8 +94,9 @@
 
 
 <br>
+<br>
 
-## 🌴 폴더 구조
+## 📂 디렉토리 구조
 
 ```
 withyou
@@ -175,18 +179,21 @@ withyou
                 InterviewFlowAPI.tsx
 ```
 
-
+<br>
 <br>
 
-## 🌴 개발 진행 방식
+## 📜 이슈관리
 
 - [GitHub Milestone](https://github.com/thgee/Withyou/milestones?state=closed) 에 개발에 필요한 큰 틀을 작성하였습니다.
 - [GitHub Issues](https://github.com/thgee/Withyou/issues?q=is%3Aissue+is%3Aclosed)를 통해 작은 구현목표를 정하고, 개발중 발생한 문제들과 진행사항을 comment에 기록하였습니다.
 
-
+<br>
+<br>
 <br>
 
-## 🌴 세부 기술스택과 채택한 이유
+
+
+## 🔧 세부 기술스택과 채택한 이유
 
 ### Typescript
 
@@ -216,11 +223,26 @@ withyou
 
 
 <br>
+<br>
+<br>
 
-## 🌴 개발일지 및 트러블 슈팅
+
+
+## ⚡ 개발일지 및 트러블 슈팅
 
 * [개발일지 및 트러블 슈팅 모음](https://thgee.notion.site/7ee9fefd33a445b6af5eef8341bf48cb?pvs=4)
 
 
-
 <br>
+<br>
+<br>
+
+
+## 💭 프로젝트 주요 고려 사항, 알게 된 점
+
+* 기획부터 디자인, 개발까지 혼자 진행하며 웹 서비스 전반의 배포 과정을 경험했습니다.
+  
+* 컴포넌트 마운트/언마운트 시에 애니메이션을 적용해보며 컴포넌트 생명주
+기에 대해깊게 공부할 수 있었습니다.
+
+* GPT가 최적의 답변을 하도록 유도하고 동시에 토큰 비용은 줄이기 위해 프롬프트 엔지니어링 과정에서 대화 내용을 번역하거나 요약해보는 등 [다양한 시도](https://thgee.notion.site/GPT-175a395cc6c2440daa1fc15d24acb7c3)를 해보며 언어 모델에 대한 지식을 얻었습니다.
